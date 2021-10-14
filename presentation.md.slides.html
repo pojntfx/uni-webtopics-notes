@@ -75,6 +75,7 @@ Felicitas Pojtinger
 <div id="development" class="title-slide slide section level2" number="1.3">
 <h1><span class="header-section-number">1.3</span> Development</h1>
 <ul>
+<li><p>DevOps: Also includes development!</p></li>
 <li><p>Modern development should not be bound to any client attributes</p></li>
 <li><p>It should not matter if the client is a RISC-V Linux machine, a locked-down Windows workstation or an Android phone</p></li>
 <li><p>Development should be possible from any platform, for any platform</p></li>
@@ -91,21 +92,31 @@ Felicitas Pojtinger
 <li><p>Open standards and web technologies enable the adoption of new client and server hardware (i.e. RISC-V chips) easier and enables the easy use of and testing on multiple architectures</p></li>
 <li><p>Autoscaling, ballooning etc. can be used server-side: There is no need to provision lots of development servers if no one is using them, and if there is a need for a lot of resources (for example if someone is compiling say a C++ project) the provisioner (i.e. Kubernetes) can dynamically decide to scale up the container or VM</p></li>
 <li><p>There is no need to trust a project’s build system, everything can be sandboxed!</p></li>
-<li><p>GitPod</p></li>
-<li><p>Codespaces</p></li>
-<li><p>Coder</p></li>
-<li><p>pojde</p></li>
-<li><p>But what if we want to develop things that one can’t normally develop remotely?</p>
+<li><p>There are already multiple “cloud IDEs”</p></li>
+<li><p>Most are based on VSCode (or, to be more precise, VSCode’s API specification)</p></li>
+<li><p>VSCode (or its libre forks, like VSCodium) is already based on web technologies (Electron), so adapting it to run in the browser is possible</p></li>
+<li><p>Theia is an example of an alternative implementation of VSCode’s API, which serves as a vendor-neutral implementation of VSCode</p></li>
+<li><p>Cloud-Native IDEs can either be self-hosted or public SaaS, so lets take a look at some of them!</p></li>
+<li><p>GitPod: Live demo</p></li>
+<li><p>Codespaces: Live demo</p></li>
+<li><p>pojde: Live demo</p></li>
+<li><p>But what if we want to develop things that one can’t normally develop remotely?</p></li>
+<li><p>Apps which require Android devices as a target, require a programmer, USB or Bluetooth and are not using Web Bluetooth/Web Serial (i.e. Android apps, smart home projects, IoT devices, Arduinos)</p>
 <ul>
-<li>Apps which require Android devices as a target (i.e. Android apps)</li>
-<li>Apps which require USB or Bluetooth and are not using Web Bluetooth/Web Serial (i.e. smart home projects)</li>
-<li>Apps which require a Wayland compositor/a screen (i.e. desktop Linux apps, GTK/QT apps)</li>
-<li>Apps which target AVRs or require a programmer (i.e. IoT devices)</li>
+<li>Forward USB over IP</li>
+<li>Formward DBus over IP for BlueZ</li>
+<li>Use SSH tunnels</li>
 </ul></li>
-<li><p>Waypipe</p></li>
-<li><p>USB forwarding</p></li>
-<li><p>Port forwarding</p></li>
-<li><p>DBus forwarding</p></li>
+<li><p>Apps which require a Wayland compositor/a screen (i.e. desktop Linux apps, GTK/QT apps)</p>
+<ul>
+<li>Waypipe</li>
+<li>Use SSH tunnels</li>
+</ul></li>
+<li><p>Apps which require public ports</p>
+<ul>
+<li>Reverse HTTPS/TLS/UDP/TCP proxies to the public web</li>
+<li>Use SSH tunnels</li>
+</ul></li>
 </ul>
 </div>
 
