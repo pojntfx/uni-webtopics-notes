@@ -2,9 +2,11 @@
 
 Notes for the Spezielle Themen für Web-Anwendungen (special topics for web applications) course at HdM Stuttgart.
 
+[![pandoc CI](https://github.com/pojntfx/uni-webtopics-notes/actions/workflows/pandoc.yaml/badge.svg)](https://github.com/pojntfx/uni-webtopics-notes/actions/workflows/pandoc.yaml)
+
 ## Overview
 
-🚧 This project is a work-in-progress! Instructions will be added as soon as it is usable. 🚧
+You can [view and download the notes from GitHub pages](https://pojntfx.github.io/uni-webtopics-notes/). They can also be downloaded as a Zip archive from [GitHub releases](https://github.com/pojntfx/uni-webtopics-notes/releases).
 
 ## License
 
