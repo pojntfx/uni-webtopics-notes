@@ -66,17 +66,17 @@ SPDX-License-Identifier: AGPL-3.0
 ### Distribution to RedHat Linux
 
 - RPM packages
+
+### Distribution to Debian GNU/Linux
+
+- DEB package
+- APT repository
 - Yum repository
 
 ### Distribution to Linux (universal)
 
 - Flatpak
 - Flatpak repository
-
-### Distribution to Debian GNU/Linux
-
-- DEB package
-- APT repository
 
 ### Distribution to Android
 
