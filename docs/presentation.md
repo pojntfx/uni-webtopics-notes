@@ -39,6 +39,7 @@ SPDX-License-Identifier: AGPL-3.0
 
 ## Development
 
+- DevOps: Also includes development!
 - Modern development should not be bound to any client attributes
 - It should not matter if the client is a RISC-V Linux machine, a locked-down Windows workstation or an Android phone
 - Development should be possible from any platform, for any platform
@@ -56,22 +57,27 @@ SPDX-License-Identifier: AGPL-3.0
 - Autoscaling, ballooning etc. can be used server-side: There is no need to provision lots of development servers if no one is using them, and if there is a need for a lot of resources (for example if someone is compiling say a C++ project) the provisioner (i.e. Kubernetes) can dynamically decide to scale up the container or VM
 - There is no need to trust a project's build system, everything can be sandboxed!
 
-- GitPod
-- Codespaces
-- Coder
-- pojde
+- There are already multiple "cloud IDEs"
+- Most are based on VSCode (or, to be more precise, VSCode's API specification)
+- VSCode (or its libre forks, like VSCodium) is already based on web technologies (Electron), so adapting it to run in the browser is possible
+- Theia is an example of an alternative implementation of VSCode's API, which serves as a vendor-neutral implementation of VSCode
+- Cloud-Native IDEs can either be self-hosted or public SaaS, so lets take a look at some of them!
+
+- GitPod: Live demo
+- Codespaces: Live demo
+- pojde: Live demo
 
 - But what if we want to develop things that one can't normally develop remotely?
-
-  - Apps which require Android devices as a target (i.e. Android apps)
-  - Apps which require USB or Bluetooth and are not using Web Bluetooth/Web Serial (i.e. smart home projects)
-  - Apps which require a Wayland compositor/a screen (i.e. desktop Linux apps, GTK/QT apps)
-  - Apps which target AVRs or require a programmer (i.e. IoT devices)
-
-- Waypipe
-- USB forwarding
-- Port forwarding
-- DBus forwarding
+- Apps which require Android devices as a target, require a programmer, USB or Bluetooth and are not using Web Bluetooth/Web Serial (i.e. Android apps, smart home projects, IoT devices, Arduinos)
+  - Forward USB over IP
+  - Formward DBus over IP for BlueZ
+  - Use SSH tunnels
+- Apps which require a Wayland compositor/a screen (i.e. desktop Linux apps, GTK/QT apps)
+  - Waypipe
+  - Use SSH tunnels
+- Apps which require public ports
+  - Reverse HTTPS/TLS/UDP/TCP proxies to the public web
+  - Use SSH tunnels
 
 ## Distribution
 
