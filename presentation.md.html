@@ -168,18 +168,20 @@
 <li><a href="#distribution"><span class="toc-section-number">1.4</span> Distribution</a>
 <ul>
 <li><a href="#basic-distribution-principles"><span class="toc-section-number">1.4.1</span> Basic Distribution Principles</a></li>
-<li><a href="#pipelines"><span class="toc-section-number">1.4.2</span> Pipelines</a></li>
-<li><a href="#packaging-overview"><span class="toc-section-number">1.4.3</span> Packaging Overview</a></li>
-<li><a href="#distribution-to-redhat-linux"><span class="toc-section-number">1.4.4</span> Distribution to RedHat Linux</a></li>
-<li><a href="#distribution-to-debian-gnulinux"><span class="toc-section-number">1.4.5</span> Distribution to Debian GNU/Linux</a></li>
-<li><a href="#distribution-to-linux-universal"><span class="toc-section-number">1.4.6</span> Distribution to Linux (universal)</a></li>
-<li><a href="#distribution-to-android"><span class="toc-section-number">1.4.7</span> Distribution to Android</a></li>
-<li><a href="#distribution-to-windows"><span class="toc-section-number">1.4.8</span> Distribution to Windows</a></li>
-<li><a href="#distribution-to-macos"><span class="toc-section-number">1.4.9</span> Distribution to macOS</a></li>
-<li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">1.4.10</span> Distribution to Kubernetes/the Cloud</a></li>
-<li><a href="#distribution-to-webassembly"><span class="toc-section-number">1.4.11</span> Distribution to WebAssembly</a></li>
+<li><a href="#packaging-overview"><span class="toc-section-number">1.4.2</span> Packaging Overview</a></li>
+<li><a href="#distribution-to-redhat-linux"><span class="toc-section-number">1.4.3</span> Distribution to RedHat Linux</a></li>
+<li><a href="#distribution-to-debian-gnulinux"><span class="toc-section-number">1.4.4</span> Distribution to Debian GNU/Linux</a></li>
+<li><a href="#distribution-to-linux-universal"><span class="toc-section-number">1.4.5</span> Distribution to Linux (universal)</a></li>
+<li><a href="#distribution-to-android"><span class="toc-section-number">1.4.6</span> Distribution to Android</a></li>
+<li><a href="#distribution-to-windows"><span class="toc-section-number">1.4.7</span> Distribution to Windows</a></li>
+<li><a href="#distribution-to-macos"><span class="toc-section-number">1.4.8</span> Distribution to macOS</a></li>
+<li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">1.4.9</span> Distribution to Kubernetes/the Cloud</a></li>
+<li><a href="#distribution-to-webassembly"><span class="toc-section-number">1.4.10</span> Distribution to WebAssembly</a></li>
 </ul></li>
-<li><a href="#operation"><span class="toc-section-number">1.5</span> Operation</a></li>
+<li><a href="#operation"><span class="toc-section-number">1.5</span> Operation</a>
+<ul>
+<li><a href="#pipelines"><span class="toc-section-number">1.5.1</span> Pipelines</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -292,63 +294,103 @@
 <li>Use dependencies carefully (i.e. use them to reduce maintenance overhead and security issues by having external tests on say usecases like IP or Email parsing); too many external dependencies and especially dependencies without a secure external supply chain lead to security issues in the app itself, which make it harder to build and decrease portability (i.e. cryptography libraries often require hardware-accelerated CPU support, which is unavailable in low-end CPUs)</li>
 </ul></li>
 <li>Portability is however often overlooked; product owners mostly see no value in it, unless things break. It is up to the developer to take initiative</li>
+<li>Demo: Compiling the Links browser from source with Autotools</li>
 </ul></li>
-<li><p>Reproducibility</p></li>
-<li><p>Why we need more than “just binaries”</p></li>
-</ul>
-<h3 data-number="1.4.2" id="pipelines"><span class="header-section-number">1.4.2</span> Pipelines</h3>
+<li><p>Reproducibility</p>
 <ul>
-<li>Bagop</li>
-<li>Hydrun</li>
-<li>GitHub Actions</li>
-<li>Semantic Release</li>
-</ul>
-<h3 data-number="1.4.3" id="packaging-overview"><span class="header-section-number">1.4.3</span> Packaging Overview</h3>
+<li>Compiling the same source code should always reproduce the same binary, byte-for-byte</li>
+<li>This allows the user and external developers to reproduce the binary</li>
+<li>It ensures that the binary has actually been built using the source code in question</li>
+<li>Without reproducibility, the only way to establish that the binary is “trusted” is trusting the developer who GPG signed the binary - they could have, for example, been paid to include telemetry or other malware, in which case the compiled binary would not match the output expected by the source code.</li>
+<li>Reproducibility in combination with the points above also allow checking if changing the source code actually lead to different results</li>
+<li>Demo: Compiling a Go binary multiple times leads to a binary with the same SHA256 hash</li>
+</ul></li>
+<li><p>Why we need more than “just binaries”</p>
 <ul>
-<li>Package manager</li>
-<li>Source packages and tarballs</li>
-<li>Binary packages</li>
-<li>Documentation packages</li>
-<li>Dependencies (build-time, runtime, one-of-many i.e. multiple OpenSSL implementations)</li>
-<li>AppStream metadata and <code>.desktop</code> files</li>
-<li>systemd services</li>
+<li>Binaries themselves can be very portable, but are not the best solution</li>
+<li>Binaries can’t (without self-extraction) include assets other than the programs logic
+<ul>
+<li>Data files (i.e. databases)</li>
+<li>Runtime-exchangable internationalization/translations</li>
+<li>Config files</li>
+<li>Media files</li>
+<li>Metadata</li>
+<li>Documentation</li>
+</ul></li>
+<li>Binaries aren’t self-describing
+<ul>
+<li>Runtime dependencies (libraries, binaries etc.)</li>
+<li>Build-time dependencies (headers, compilers etc.)</li>
+<li>Language, description etc. metadata</li>
+</ul></li>
+<li>The solutions: Packages!</li>
+</ul></li>
 </ul>
-<h3 data-number="1.4.4" id="distribution-to-redhat-linux"><span class="header-section-number">1.4.4</span> Distribution to RedHat Linux</h3>
+<h3 data-number="1.4.2" id="packaging-overview"><span class="header-section-number">1.4.2</span> Packaging Overview</h3>
+<ul>
+<li><p>What is a package?</p>
+<ul>
+<li>Includes the binary, assets, metadata and signature</li>
+<li>Is self-describing</li>
+<li>Mostly some form of archive (i.e. RPM, <code>.tar.gz</code>) in combination with a metadata file and signature</li>
+</ul></li>
+<li><p>What is a package manager?</p>
+<ul>
+<li>Can install, remove and update packages</li>
+<li>Mostly two components: Low-level tool to install and remove package files (<code>dpkg</code> on Debian, <code>rpm</code> on Fedora) and a high-level tool to search, download, install and resolve dependencies (<code>apt</code> on Debian, <code>dnf</code> on Fedora)</li>
+<li>Can resolve and install runtime and build-time dependencies (i.e. dependency on C library, SQLite, SDL2, headers for cURL etc.)</li>
+<li>Can check GPG signatures of</li>
+</ul></li>
+<li><p>Repository</p>
+<ul>
+<li>Can serve packages and their metadata (i.e. versions)</li>
+<li>Large repository mostly provided by a distribution (“a distribution is the repositories”), with the ability to enable official community repos (i.e. Alpine Linux) and backports (Debian)</li>
+<li>Custom repositories can also be installed and be included in individual packages, so that installing the package also installs the repository for further updates</li>
+</ul></li>
+<li><p>Source packages and tarballs</p></li>
+<li><p>Binary packages</p></li>
+<li><p>Documentation packages</p></li>
+<li><p>Dependencies (build-time, runtime, one-of-many i.e. multiple OpenSSL implementations)</p></li>
+<li><p>AppStream metadata and <code>.desktop</code> files</p></li>
+<li><p>systemd services</p></li>
+<li><p>Demo: Downloading, updating, extracting a package</p></li>
+</ul>
+<h3 data-number="1.4.3" id="distribution-to-redhat-linux"><span class="header-section-number">1.4.3</span> Distribution to RedHat Linux</h3>
 <ul>
 <li>RPM packages</li>
 </ul>
-<h3 data-number="1.4.5" id="distribution-to-debian-gnulinux"><span class="header-section-number">1.4.5</span> Distribution to Debian GNU/Linux</h3>
+<h3 data-number="1.4.4" id="distribution-to-debian-gnulinux"><span class="header-section-number">1.4.4</span> Distribution to Debian GNU/Linux</h3>
 <ul>
 <li>DEB package</li>
 <li>APT repository</li>
 <li>Yum repository</li>
 </ul>
-<h3 data-number="1.4.6" id="distribution-to-linux-universal"><span class="header-section-number">1.4.6</span> Distribution to Linux (universal)</h3>
+<h3 data-number="1.4.5" id="distribution-to-linux-universal"><span class="header-section-number">1.4.5</span> Distribution to Linux (universal)</h3>
 <ul>
 <li>Flatpak</li>
 <li>Flatpak repository</li>
 </ul>
-<h3 data-number="1.4.7" id="distribution-to-android"><span class="header-section-number">1.4.7</span> Distribution to Android</h3>
+<h3 data-number="1.4.6" id="distribution-to-android"><span class="header-section-number">1.4.6</span> Distribution to Android</h3>
 <ul>
 <li>APK</li>
 <li>F-Droid repository</li>
 </ul>
-<h3 data-number="1.4.8" id="distribution-to-windows"><span class="header-section-number">1.4.8</span> Distribution to Windows</h3>
+<h3 data-number="1.4.7" id="distribution-to-windows"><span class="header-section-number">1.4.7</span> Distribution to Windows</h3>
 <ul>
 <li>MSI package with auto-updates</li>
 </ul>
-<h3 data-number="1.4.9" id="distribution-to-macos"><span class="header-section-number">1.4.9</span> Distribution to macOS</h3>
+<h3 data-number="1.4.8" id="distribution-to-macos"><span class="header-section-number">1.4.8</span> Distribution to macOS</h3>
 <ul>
 <li>DMG package with auto-updates</li>
 </ul>
-<h3 data-number="1.4.10" id="distribution-to-kubernetesthe-cloud"><span class="header-section-number">1.4.10</span> Distribution to Kubernetes/the Cloud</h3>
+<h3 data-number="1.4.9" id="distribution-to-kubernetesthe-cloud"><span class="header-section-number">1.4.9</span> Distribution to Kubernetes/the Cloud</h3>
 <ul>
 <li>Docker</li>
 <li>Kubernetes</li>
 <li>Helm</li>
 <li>Skaffold</li>
 </ul>
-<h3 data-number="1.4.11" id="distribution-to-webassembly"><span class="header-section-number">1.4.11</span> Distribution to WebAssembly</h3>
+<h3 data-number="1.4.10" id="distribution-to-webassembly"><span class="header-section-number">1.4.10</span> Distribution to WebAssembly</h3>
 <ul>
 <li>WASM-Binary</li>
 <li>WASI/wasm_exec equivalents</li>
@@ -359,6 +401,13 @@
 <li>OpenTelemetry</li>
 <li>Prometheus</li>
 <li>Grafana</li>
+</ul>
+<h3 data-number="1.5.1" id="pipelines"><span class="header-section-number">1.5.1</span> Pipelines</h3>
+<ul>
+<li>Bagop</li>
+<li>Hydrun</li>
+<li>GitHub Actions</li>
+<li>Semantic Release</li>
 </ul>
 </body>
 </html>
