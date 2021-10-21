@@ -84,9 +84,32 @@ SPDX-License-Identifier: AGPL-3.0
 ### Basic Distribution Principles
 
 - Binaries
-- GPG signing and Gridge
-- Cosign
+  - Compiled forms of software
+  - On Linux: ELF binaries, PE binaries on Windows and MACH-O binaries on macOS
+  - Binaries can be statically or dynamically linked
+    - Statically linked: Since the Linux ABIs are stable, one can depend on them not changing - this allows not linking against any specific C library and makes the resulting binary portable across distributions. It also allows including all external dependencies into the binary, effectively making it a "single-file" distribution method
+    - Dynamically linked: Thanks to `dlopen` and package management, dynamic linking can also be used. Most of the time (especially on non-Linux OSes), at least the C library and external dependencies (i.e. `SQLite`) thus need to be available in `LD_LIBRARY_PATH` at runtime; if they are not, the application can't continue. This makes the binaries non-portable across distributions; for example, if a binary is built on a Debian 11 host, it most probably won't run on a Debian 10 host due to the different versions of the GNU C library used. This does however also have a few big advantages, which apply especially to Linux distributions.
+    - Demo: Creating a statically-linked (`CGO_ENABLE=1`) Go binary, running `ldd` on it and running it in two containers (Debian and Alpine Linux), then retrying it with a statically-linked (`CGO_ENABLE=0`) binary
+- GPG signing
+  - GPG: GNU privacy guard; a Free Software implementing GPG (RFC 4880)
+  - Signatures allow the user to verify the author of a piece of software
+  - To increase security, only signed software should ever be installed - as we'll see later, this is already the case on Linux distributions and their repositories
+  - For example: If author Alice publishes an app (lets call it "scihab") and user Bob wishes to be able to verify that the binary has actually been produced by Alice, he can verify that the binary has actually been produced by Alice and hasn't for example been infected with malware by a malicious actor, in which the case the signature (usually a `.asc` file) no longer matches.
+  - Demo: Creating a signed binary, verifying it (hydrapp), tampering with it (adding bytes to end), and re-verifying it
+  - Show gridge (https://pojntfx.github.io/gridge/)
 - Portability
+
+  - Applications should be portable
+  - Portability can mean different things: Portability as in amount of platforms it can be compiled for, platforms it can be compiled on, platforms it can run on in compiled form, constraints the compiled form needs
+  - There are many reasons to make apps portable, both from a developer's and a user's point of view
+  - Apps can be tuned for portability with a few simple steps (see in part https://drewdevault.com/2021/09/27/Let-distros-do-their-job.html)
+    - Distribution as a simple tarball
+    - Shipping static binaries
+    - Use standard build systems and methodologies (Go, Cargo, Meson, Autotools, CMake etc.), _never_ use custom bash scripts to build your software; this will ensure that packaging the software is much easier, as the tooling for the build system probably already exists. It also vastly increases the developer experience (DX).
+    - Inclusion of good release notes makes it much easier from a distro's or developer's perspective to be aware of changes that might break the build system or new runtime or target platform requirements
+    - Use dependencies carefully (i.e. use them to reduce maintenance overhead and security issues by having external tests on say usecases like IP or Email parsing); too many external dependencies and especially dependencies without a secure external supply chain lead to security issues in the app itself, which make it harder to build and decrease portability (i.e. cryptography libraries often require hardware-accelerated CPU support, which is unavailable in low-end CPUs)
+  - Portability is however often overlooked; product owners mostly see no value in it, unless things break. It is up to the developer to take initiative
+
 - Reproducibility
 - Why we need more than "just binaries"
 
@@ -96,6 +119,16 @@ SPDX-License-Identifier: AGPL-3.0
 - Hydrun
 - GitHub Actions
 - Semantic Release
+
+### Packaging Overview
+
+- Package manager
+- Source packages and tarballs
+- Binary packages
+- Documentation packages
+- Dependencies (build-time, runtime, one-of-many i.e. multiple OpenSSL implementations)
+- AppStream metadata and `.desktop` files
+- systemd services
 
 ### Distribution to RedHat Linux
 
