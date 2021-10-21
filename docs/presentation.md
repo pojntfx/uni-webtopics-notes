@@ -109,26 +109,54 @@ SPDX-License-Identifier: AGPL-3.0
     - Inclusion of good release notes makes it much easier from a distro's or developer's perspective to be aware of changes that might break the build system or new runtime or target platform requirements
     - Use dependencies carefully (i.e. use them to reduce maintenance overhead and security issues by having external tests on say usecases like IP or Email parsing); too many external dependencies and especially dependencies without a secure external supply chain lead to security issues in the app itself, which make it harder to build and decrease portability (i.e. cryptography libraries often require hardware-accelerated CPU support, which is unavailable in low-end CPUs)
   - Portability is however often overlooked; product owners mostly see no value in it, unless things break. It is up to the developer to take initiative
+  - Demo: Compiling the Links browser from source with Autotools
 
 - Reproducibility
+  - Compiling the same source code should always reproduce the same binary, byte-for-byte
+  - This allows the user and external developers to reproduce the binary
+  - It ensures that the binary has actually been built using the source code in question
+  - Without reproducibility, the only way to establish that the binary is "trusted" is trusting the developer who GPG signed the binary - they could have, for example, been paid to include telemetry or other malware, in which case the compiled binary would not match the output expected by the source code.
+  - Reproducibility in combination with the points above also allow checking if changing the source code actually lead to different results
+  - Demo: Compiling a Go binary multiple times leads to a binary with the same SHA256 hash
 - Why we need more than "just binaries"
-
-### Pipelines
-
-- Bagop
-- Hydrun
-- GitHub Actions
-- Semantic Release
+  - Binaries themselves can be very portable, but are not the best solution
+  - Binaries can't (without self-extraction) include assets other than the programs logic
+    - Data files (i.e. databases)
+    - Runtime-exchangable internationalization/translations
+    - Config files
+    - Media files
+    - Metadata
+    - Documentation
+  - Binaries aren't self-describing
+    - Runtime dependencies (libraries, binaries etc.)
+    - Build-time dependencies (headers, compilers etc.)
+    - Language, description etc. metadata
+  - The solutions: Packages!
 
 ### Packaging Overview
 
-- Package manager
+- What is a package?
+  - Includes the binary, assets, metadata and signature
+  - Is self-describing
+  - Mostly some form of archive (i.e. RPM, `.tar.gz`) in combination with a metadata file and signature
+- What is a package manager?
+  - Can install, remove and update packages
+  - Mostly two components: Low-level tool to install and remove package files (`dpkg` on Debian, `rpm` on Fedora) and a high-level tool to search, download, install and resolve dependencies (`apt` on Debian, `dnf` on Fedora)
+  - Can resolve and install runtime and build-time dependencies (i.e. dependency on C library, SQLite, SDL2, headers for cURL etc.)
+  - Can check GPG signatures of
+- Repository
+
+  - Can serve packages and their metadata (i.e. versions)
+  - Large repository mostly provided by a distribution ("a distribution is the repositories"), with the ability to enable official community repos (i.e. Alpine Linux) and backports (Debian)
+  - Custom repositories can also be installed and be included in individual packages, so that installing the package also installs the repository for further updates
+
 - Source packages and tarballs
 - Binary packages
 - Documentation packages
 - Dependencies (build-time, runtime, one-of-many i.e. multiple OpenSSL implementations)
 - AppStream metadata and `.desktop` files
 - systemd services
+- Demo: Downloading, updating, extracting a package
 
 ### Distribution to RedHat Linux
 
@@ -176,3 +204,10 @@ SPDX-License-Identifier: AGPL-3.0
 - OpenTelemetry
 - Prometheus
 - Grafana
+
+### Pipelines
+
+- Bagop
+- Hydrun
+- GitHub Actions
+- Semantic Release
