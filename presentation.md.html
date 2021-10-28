@@ -347,23 +347,61 @@
 <li>Large repository mostly provided by a distribution (“a distribution is the repositories”), with the ability to enable official community repos (i.e. Alpine Linux) and backports (Debian)</li>
 <li>Custom repositories can also be installed and be included in individual packages, so that installing the package also installs the repository for further updates</li>
 </ul></li>
-<li><p>Source packages and tarballs</p></li>
-<li><p>Binary packages</p></li>
-<li><p>Documentation packages</p></li>
-<li><p>Dependencies (build-time, runtime, one-of-many i.e. multiple OpenSSL implementations)</p></li>
-<li><p>AppStream metadata and <code>.desktop</code> files</p></li>
-<li><p>systemd services</p></li>
+<li><p>Source packages and tarballs</p>
+<ul>
+<li>Builds should be reproducible</li>
+<li>Source packages contain all information necessary to build the application (including source code, build-time dependencies, patches, metadata for package creation)</li>
+<li>Tarballs: <code>tar</code>-files, tape archives: A linear storage format used internally for physical tapes but also for files. Contains all source code; often zipped (<code>.tar.gz</code>)</li>
+<li>Depending on the package format the source package can contain the source code (RedHat) or use a separate tarball (Debian)</li>
+<li>There can be additional tarballs, i.e. one with the original source and one with the distro’s patches (i.e. <code>.debian.tar.gz</code>)</li>
+<li>Many systems allow installing from the binary package (see following) and by downloading &amp; rebuilding the source package</li>
+</ul></li>
+<li><p>Binary packages</p>
+<ul>
+<li>Contains the compiled program, data files and metadata (i.e. dependencies on other binary packages)</li>
+<li>Is usually what is being used to install the software</li>
+</ul></li>
+<li><p>Documentation packages</p>
+<ul>
+<li>Are often separate packages as documentation may not be required for running the software and documentation can be large</li>
+<li>Can have different license from rest of software, i.e. GFDL</li>
+<li>Often ends in docs; i.e. in Alpine Linux, for the binary package <code>mariadb</code> the documentation package is called <code>mariadb-docs</code></li>
+</ul></li>
+<li><p>Dependencies</p>
+<ul>
+<li>There are two basic types of dependencies: Build-time and runtime</li>
+<li>Build-time dependencies are required to compile the software; i.e. compilers or dependencies vendored by the distro (i.e. LaTeX packages, headers)</li>
+<li>Runtime dependencies are required to run the software; i.e. dynamically-linked libraries (i.e. OpenSSL) or other programs that can be launched</li>
+<li>Dynamic linking is useful in distros as it allows the distro to update all important dependencies (i.e. the SSL library) at once as long as the ABI didn’t change</li>
+<li>Versions and alternatives can be specified; i.e. Go and <code>gccgo</code> as one of the Go compilers to choose from or OpenSSL and LibreSSL as one of the SSL libraries to choose from</li>
+</ul></li>
+<li><p>Metadata</p>
+<ul>
+<li>Packages often have metadata: ID, Name, description, author, license, version, URL, changelog etc.</li>
+<li>AppStream metadata (and to a certain degree, <code>.desktop</code> files) is a standard for this data</li>
+<li><code>.desktop</code> files provide shortcuts, application categories and window menu options (mostly of use in a desktop context, but can also be used as an alternative to launching binaries directly)</li>
+</ul></li>
+<li><p>systemd and systemd Units</p>
+<ul>
+<li>Are the basic buildings blocks of a Linux system</li>
+<li>Describe a service/daemon</li>
+<li>Can be either system services (managed by root or an authorized user) or user services (managed by a user)</li>
+<li>Can describe dependencies on other services; i.e. dependency of backend on database</li>
+<li>Can launch services in parallel if dependencies allow for it</li>
+<li>Supports socket activation: Services will only be started if a user makes a request and is stopped afterwards (“scale to zero”)</li>
+<li>Can be enabled, started, stopped etc. based on user input or targets (i.e. after system is turned on, gets an internet connection, has started the shutdown process)</li>
+</ul></li>
 <li><p>Demo: Downloading, updating, extracting a package</p></li>
 </ul>
 <h3 data-number="1.4.3" id="distribution-to-redhat-linux"><span class="header-section-number">1.4.3</span> Distribution to RedHat Linux</h3>
 <ul>
 <li>RPM packages</li>
+<li>Yum repository</li>
 </ul>
 <h3 data-number="1.4.4" id="distribution-to-debian-gnulinux"><span class="header-section-number">1.4.4</span> Distribution to Debian GNU/Linux</h3>
 <ul>
 <li>DEB package</li>
 <li>APT repository</li>
-<li>Yum repository</li>
 </ul>
 <h3 data-number="1.4.5" id="distribution-to-linux-universal"><span class="header-section-number">1.4.5</span> Distribution to Linux (universal)</h3>
 <ul>
