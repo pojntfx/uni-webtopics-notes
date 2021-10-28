@@ -192,32 +192,35 @@ SPDX-License-Identifier: AGPL-3.0
 
 - Demo: Downloading, updating, extracting a package
 
-### Distribution to RedHat Linux
+### Distribution to RedHat Enterprise Linux
 
-- RPM packages
-- Yum repository
+- RHEL is a very popular distribution and serves as the upstream of many other distros (CentOS, Rocky Linux etc.)
+- Fedora Linux is its upstream
+- Is based on the RPM package format and the DNF package manager
+- Commercial
+- Very long support cycles (at least ten years per major release)
+- RPM package format: Demo
+- DNF package manager and repositories: Demo
 
 ### Distribution to Debian GNU/Linux
 
-- DEB package
-- APT repository
+- Debian is another very popular distribution that also serves as the upstream of many other distros (Ubuntu, Linux Mint, Pop!\_OS etc.)
+- Is based on the DEB package format and the APT package manager
+- Community-Driven, completely Free Software
+- 5 years support per major release
+- DEB package format: Demo
+- APT package manager and repositories: Demo
 
 ### Distribution to Linux (universal)
 
-- Flatpak
+- Flatpak overview
+- Flatpak's build system and differences to traditional packages
 - Flatpak repository
 
-### Distribution to Android
+### In Comparison: Distribution to Android, Windows and macOS
 
-- APK
-- F-Droid repository
-
-### Distribution to Windows
-
+- APKs in F-Droid repository
 - MSI package with auto-updates
-
-### Distribution to macOS
-
 - DMG package with auto-updates
 
 ### Distribution to Kubernetes/the Cloud
