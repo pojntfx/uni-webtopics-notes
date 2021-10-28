@@ -169,14 +169,12 @@
 <ul>
 <li><a href="#basic-distribution-principles"><span class="toc-section-number">1.4.1</span> Basic Distribution Principles</a></li>
 <li><a href="#packaging-overview"><span class="toc-section-number">1.4.2</span> Packaging Overview</a></li>
-<li><a href="#distribution-to-redhat-linux"><span class="toc-section-number">1.4.3</span> Distribution to RedHat Linux</a></li>
+<li><a href="#distribution-to-redhat-enterprise-linux"><span class="toc-section-number">1.4.3</span> Distribution to RedHat Enterprise Linux</a></li>
 <li><a href="#distribution-to-debian-gnulinux"><span class="toc-section-number">1.4.4</span> Distribution to Debian GNU/Linux</a></li>
 <li><a href="#distribution-to-linux-universal"><span class="toc-section-number">1.4.5</span> Distribution to Linux (universal)</a></li>
-<li><a href="#distribution-to-android"><span class="toc-section-number">1.4.6</span> Distribution to Android</a></li>
-<li><a href="#distribution-to-windows"><span class="toc-section-number">1.4.7</span> Distribution to Windows</a></li>
-<li><a href="#distribution-to-macos"><span class="toc-section-number">1.4.8</span> Distribution to macOS</a></li>
-<li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">1.4.9</span> Distribution to Kubernetes/the Cloud</a></li>
-<li><a href="#distribution-to-webassembly"><span class="toc-section-number">1.4.10</span> Distribution to WebAssembly</a></li>
+<li><a href="#in-comparison-distribution-to-android-windows-and-macos"><span class="toc-section-number">1.4.6</span> In Comparison: Distribution to Android, Windows and macOS</a></li>
+<li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">1.4.7</span> Distribution to Kubernetes/the Cloud</a></li>
+<li><a href="#distribution-to-webassembly"><span class="toc-section-number">1.4.8</span> Distribution to WebAssembly</a></li>
 </ul></li>
 <li><a href="#operation"><span class="toc-section-number">1.5</span> Operation</a>
 <ul>
@@ -393,42 +391,45 @@
 </ul></li>
 <li><p>Demo: Downloading, updating, extracting a package</p></li>
 </ul>
-<h3 data-number="1.4.3" id="distribution-to-redhat-linux"><span class="header-section-number">1.4.3</span> Distribution to RedHat Linux</h3>
+<h3 data-number="1.4.3" id="distribution-to-redhat-enterprise-linux"><span class="header-section-number">1.4.3</span> Distribution to RedHat Enterprise Linux</h3>
 <ul>
-<li>RPM packages</li>
-<li>Yum repository</li>
+<li>RHEL is a very popular distribution and serves as the upstream of many other distros (CentOS, Rocky Linux etc.)</li>
+<li>Fedora Linux is its upstream</li>
+<li>Is based on the RPM package format and the DNF package manager</li>
+<li>Commercial</li>
+<li>Very long support cycles (at least ten years per major release)</li>
+<li>RPM package format: Demo</li>
+<li>DNF package manager and repositories: Demo</li>
 </ul>
 <h3 data-number="1.4.4" id="distribution-to-debian-gnulinux"><span class="header-section-number">1.4.4</span> Distribution to Debian GNU/Linux</h3>
 <ul>
-<li>DEB package</li>
-<li>APT repository</li>
+<li>Debian is another very popular distribution that also serves as the upstream of many other distros (Ubuntu, Linux Mint, Pop!_OS etc.)</li>
+<li>Is based on the DEB package format and the APT package manager</li>
+<li>Community-Driven, completely Free Software</li>
+<li>5 years support per major release</li>
+<li>DEB package format: Demo</li>
+<li>APT package manager and repositories: Demo</li>
 </ul>
 <h3 data-number="1.4.5" id="distribution-to-linux-universal"><span class="header-section-number">1.4.5</span> Distribution to Linux (universal)</h3>
 <ul>
-<li>Flatpak</li>
+<li>Flatpak overview</li>
+<li>Flatpak’s build system and differences to traditional packages</li>
 <li>Flatpak repository</li>
 </ul>
-<h3 data-number="1.4.6" id="distribution-to-android"><span class="header-section-number">1.4.6</span> Distribution to Android</h3>
+<h3 data-number="1.4.6" id="in-comparison-distribution-to-android-windows-and-macos"><span class="header-section-number">1.4.6</span> In Comparison: Distribution to Android, Windows and macOS</h3>
 <ul>
-<li>APK</li>
-<li>F-Droid repository</li>
-</ul>
-<h3 data-number="1.4.7" id="distribution-to-windows"><span class="header-section-number">1.4.7</span> Distribution to Windows</h3>
-<ul>
+<li>APKs in F-Droid repository</li>
 <li>MSI package with auto-updates</li>
-</ul>
-<h3 data-number="1.4.8" id="distribution-to-macos"><span class="header-section-number">1.4.8</span> Distribution to macOS</h3>
-<ul>
 <li>DMG package with auto-updates</li>
 </ul>
-<h3 data-number="1.4.9" id="distribution-to-kubernetesthe-cloud"><span class="header-section-number">1.4.9</span> Distribution to Kubernetes/the Cloud</h3>
+<h3 data-number="1.4.7" id="distribution-to-kubernetesthe-cloud"><span class="header-section-number">1.4.7</span> Distribution to Kubernetes/the Cloud</h3>
 <ul>
 <li>Docker</li>
 <li>Kubernetes</li>
 <li>Helm</li>
 <li>Skaffold</li>
 </ul>
-<h3 data-number="1.4.10" id="distribution-to-webassembly"><span class="header-section-number">1.4.10</span> Distribution to WebAssembly</h3>
+<h3 data-number="1.4.8" id="distribution-to-webassembly"><span class="header-section-number">1.4.8</span> Distribution to WebAssembly</h3>
 <ul>
 <li>WASM-Binary</li>
 <li>WASI/wasm_exec equivalents</li>
