@@ -151,22 +151,56 @@ SPDX-License-Identifier: AGPL-3.0
   - Custom repositories can also be installed and be included in individual packages, so that installing the package also installs the repository for further updates
 
 - Source packages and tarballs
+
+  - Builds should be reproducible
+  - Source packages contain all information necessary to build the application (including source code, build-time dependencies, patches, metadata for package creation)
+  - Tarballs: `tar`-files, tape archives: A linear storage format used internally for physical tapes but also for files. Contains all source code; often zipped (`.tar.gz`)
+  - Depending on the package format the source package can contain the source code (RedHat) or use a separate tarball (Debian)
+  - There can be additional tarballs, i.e. one with the original source and one with the distro's patches (i.e. `.debian.tar.gz`)
+  - Many systems allow installing from the binary package (see following) and by downloading & rebuilding the source package
+
 - Binary packages
+  - Contains the compiled program, data files and metadata (i.e. dependencies on other binary packages)
+  - Is usually what is being used to install the software
 - Documentation packages
-- Dependencies (build-time, runtime, one-of-many i.e. multiple OpenSSL implementations)
-- AppStream metadata and `.desktop` files
-- systemd services
+  - Are often separate packages as documentation may not be required for running the software and documentation can be large
+  - Can have different license from rest of software, i.e. GFDL
+  - Often ends in docs; i.e. in Alpine Linux, for the binary package `mariadb` the documentation package is called `mariadb-docs`
+- Dependencies
+
+  - There are two basic types of dependencies: Build-time and runtime
+  - Build-time dependencies are required to compile the software; i.e. compilers or dependencies vendored by the distro (i.e. LaTeX packages, headers)
+  - Runtime dependencies are required to run the software; i.e. dynamically-linked libraries (i.e. OpenSSL) or other programs that can be launched
+  - Dynamic linking is useful in distros as it allows the distro to update all important dependencies (i.e. the SSL library) at once as long as the ABI didn't change
+  - Versions and alternatives can be specified; i.e. Go and `gccgo` as one of the Go compilers to choose from or OpenSSL and LibreSSL as one of the SSL libraries to choose from
+
+- Metadata
+
+  - Packages often have metadata: ID, Name, description, author, license, version, URL, changelog etc.
+  - AppStream metadata (and to a certain degree, `.desktop` files) is a standard for this data
+  - `.desktop` files provide shortcuts, application categories and window menu options (mostly of use in a desktop context, but can also be used as an alternative to launching binaries directly)
+
+- systemd and systemd Units
+
+  - Are the basic buildings blocks of a Linux system
+  - Describe a service/daemon
+  - Can be either system services (managed by root or an authorized user) or user services (managed by a user)
+  - Can describe dependencies on other services; i.e. dependency of backend on database
+  - Can launch services in parallel if dependencies allow for it
+  - Supports socket activation: Services will only be started if a user makes a request and is stopped afterwards ("scale to zero")
+  - Can be enabled, started, stopped etc. based on user input or targets (i.e. after system is turned on, gets an internet connection, has started the shutdown process)
+
 - Demo: Downloading, updating, extracting a package
 
 ### Distribution to RedHat Linux
 
 - RPM packages
+- Yum repository
 
 ### Distribution to Debian GNU/Linux
 
 - DEB package
 - APT repository
-- Yum repository
 
 ### Distribution to Linux (universal)
 
