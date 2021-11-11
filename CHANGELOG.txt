@@ -1,0 +1,65 @@
+commit ff439c56545733cb680fab318305e52f0708bf03
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Nov 11 08:37:39 2021 +0100
+
+    build: Use new build system
+
+commit 315a30145490a72cda6164cddafbe6b520cac103
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 28 11:13:52 2021 +0200
+
+    feat: Add basic intro to RHEL and Debian
+
+commit 53ea614bdc177d9b86f4ba75347af42eaca2a03f
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 28 10:37:03 2021 +0200
+
+    feat: Add section on binary and source packages, metadata and systemd
+
+commit a88ea346bd0e7a99b475b1c7eeed05fc483345a2
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 21 10:22:51 2021 +0200
+
+    feat: Add introduction package on packaging
+
+commit a51ce14d84e4c69c2434faaa571c45416a8ed35e
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 21 09:14:03 2021 +0200
+
+    docs: Add notes on binaries and portability
+
+commit 97667007866f3b26403a4bedb08c874a01203e5f
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 14 11:00:09 2021 +0200
+
+    feat: Add section on cloud IDEs
+
+commit 3375d250a337e4948b168a409622a18fd0191ff5
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 14 10:21:42 2021 +0200
+
+    feat: Add development introduction section
+
+commit 86f519e3555b51172950b4c4067a6fb90ce9f132
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 14 09:20:12 2021 +0200
+
+    build: Add GitHub action
+
+commit e2087f9568d85ca5463c68dde031aded6693b9d2
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 14 09:18:44 2021 +0200
+
+    feat: Add build system
+
+commit 1bd4e736c105c5b75e93d9799ffe3e29d065eb3c
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 14 08:51:42 2021 +0200
+
+    feat: Add basic theme list
+
+commit ea4e294303c231e5eed46199e0a645053047756b
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Oct 14 08:25:56 2021 +0200
+
+    Initial commit

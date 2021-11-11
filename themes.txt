@@ -1,0 +1,126 @@
+Uni Web Topics Themes
+Felicitas Pojtinger
+2021-11-19
+
+-   1 Introduction
+    -   1.1 Contributing
+    -   1.2 License
+-   2 Overview
+-   3 Development
+-   4 Distribution
+    -   4.1 Basic Distribution Principles
+    -   4.2 Pipelines
+    -   4.3 Distribution to RedHat Linux
+    -   4.4 Distribution to Debian GNU/Linux
+    -   4.5 Distribution to Linux (universal)
+    -   4.6 Distribution to Android
+    -   4.7 Distribution to Windows
+    -   4.8 Distribution to macOS
+    -   4.9 Distribution to Kubernetes/the Cloud
+    -   4.10 Distribution to WebAssembly
+-   5 Operation
+
+Introduction
+
+Contributing
+
+These study materials are heavily based on professor Heuzeroth’s
+“Spezielle Themen für Web-Anwendungen” lecture at HdM Stuttgart.
+
+Found an error or have a suggestion? Please open an issue on GitHub
+(github.com/pojntfx/uni-webtopics-notes):
+
+[QR code to source repository]
+
+If you like the study materials, a GitHub star is always appreciated :)
+
+License
+
+[AGPL-3.0 license badge]
+
+Uni Web Topics Themes (c) 2021 Felicitas Pojtinger and contributors
+
+SPDX-License-Identifier: AGPL-3.0
+
+Overview
+
+-   What is DevOps?
+-   Which parts of the software lifecycle does it cover?
+    -   Development
+    -   Distribution (I will focus on this today)
+    -   Operation
+
+Development
+
+-   GitPod
+-   Codespaces
+-   Coder
+-   pojde
+-   Waypipe
+-   USB forwarding
+-   Port forwarding
+
+Distribution
+
+Basic Distribution Principles
+
+-   Binaries
+-   GPG signing and Gridge
+-   Cosign
+-   Portability
+-   Reproducibility
+-   Why we need more than “just binaries”
+
+Pipelines
+
+-   Bagop
+-   Hydrun
+-   GitHub Actions
+-   Semantic Release
+
+Distribution to RedHat Linux
+
+-   RPM packages
+
+Distribution to Debian GNU/Linux
+
+-   DEB package
+-   APT repository
+-   Yum repository
+
+Distribution to Linux (universal)
+
+-   Flatpak
+-   Flatpak repository
+
+Distribution to Android
+
+-   APK
+-   F-Droid repository
+
+Distribution to Windows
+
+-   MSI package with auto-updates
+
+Distribution to macOS
+
+-   DMG package with auto-updates
+
+Distribution to Kubernetes/the Cloud
+
+-   Docker
+-   Kubernetes
+-   Helm
+-   Skaffold
+
+Distribution to WebAssembly
+
+-   WASM-Binary
+-   WASI/wasm_exec equivalents
+
+Operation
+
+-   Sentry
+-   OpenTelemetry
+-   Prometheus
+-   Grafana
