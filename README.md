@@ -18,9 +18,9 @@ To build and open a note locally, run the following:
 $ git clone https://github.com/pojntfx/uni-webtopics-notes.git
 $ cd uni-webtopics-notes
 $ make depend
-$ make dev-pdf/your-note # Use Bash completion to list available targets.
+$ make dev-pdf/your-note # Use Bash completion to list available targets
 # In another terminal
-$ make open-pdf/your-note # Use Bash completion to list available targets.
+$ make open-pdf/your-note # Use Bash completion to list available targets
 ```
 
 The note should now be opened. Whenever you change a source file, it will automatically be re-compiled.
