@@ -16,8 +16,8 @@ Felicitas Pojtinger
     -   4.6 In Comparison: Distribution to Android, Windows and macOS
     -   4.7 Distribution to Kubernetes/the Cloud
     -   4.8 Distribution to WebAssembly
+    -   4.9 Pipelines
 -   5 Operation
-    -   5.1 Pipelines
 
 Introduction
 
@@ -420,9 +420,40 @@ Distribution to Linux (universal)
 
 In Comparison: Distribution to Android, Windows and macOS
 
--   APKs in F-Droid repository
--   MSI package with auto-updates
--   DMG package with auto-updates
+-   As we are in a web context I will only take a short look at
+    proprietary platform’s distribution mechanism
+-   The intention here is to show why these platforms are not viable for
+    secure usage
+-   Android
+    -   APKs can be published to a “app store” which is comparable to a
+        repository, i.e. F-Droid, Huawei AppGallery, Samsung Galaxy,
+        Amazon App Store or Google Play.
+    -   APKs are ZIP files with a Manifest, Dalvik Bytecode, Resources
+        and native libraries
+    -   Updates are handled by the app store
+    -   Permissions are handled by the operating system
+-   Windows
+    -   MSI packages or self-extracting installers are used
+    -   No concept of source or binary packages, no reproducibility -
+        most software is fully proprietary and violates the user’s
+        rights
+    -   Files are tracked through the registry, but arbitrary code can
+        be run at install time
+    -   Has an app store without apps
+    -   Almost all apps implement their own update systems which
+        replaces the app itself with the update
+-   macOS
+    -   DMG images or .pkg installers are used
+    -   No concept of source or binary packages, no reproducibility -
+        most software is fully proprietary and violates the user’s
+        rights
+    -   Files are not tracked, but in the case or a DMG image are
+        extracted
+    -   Sandboxing is possible, but not widely used
+    -   Has a heavily restricted app store which costs $100 per year and
+        a $2000 computer to send apps to
+    -   Most apps implement their own update systems which replaces the
+        app itself with the update
 
 Distribution to Kubernetes/the Cloud
 
@@ -436,16 +467,69 @@ Distribution to WebAssembly
 -   WASM-Binary
 -   WASI/wasm_exec equivalents
 
+Pipelines
+
+-   bagop & bagccgop
+
+    -   Tools to build for a lot of platforms
+    -   Examples in Go, but these kind of tools exist for almost all
+        programming languages
+    -   Cloud environments and Kubernetes clusters are heterogeneous:
+        They can have many different CPU architectures (x86_64, arm64,
+        riscv64, ppc64 etc.)
+    -   Portability is the key factor; your apps should not assume their
+        target platforms and use standard build systems, which makes
+        this much easier
+    -   bagop and bagccgop try to build for all possible targets
+        (i.e. Linux on riscv64, FreeBSD on x86_64 etc.) by default and
+        then allows you to disable platforms which one can’t compile for
+    -   bagop works for pure Go, is fast and builds for ~40 targets by
+        default
+    -   Demo: Build a Hello World Go app with bagop
+    -   C libraries further complicate the situation: These require
+        dynamically linked libraries and headers at compile/runtime,
+        which means that they also require related dependencies at
+        compile time for the specific target architecture and operating
+        system, even if static linking is used
+    -   The solution is to either use tweaked chroots and a
+        cross-compiler (fast but tricky to set up) or binfmt and
+        qemu-user-static (slow but easy to set up)
+    -   bagccgop is an automated way to use the first solution
+    -   Can build for all Debian-supported platforms (including
+        “esoteric” ones like 32-bit PowerPC)
+    -   Can build static binaries with CGo thanks to GCCGo
+    -   Allows the use of pretty much any C library with
+        “cross-compilation by default” (OpenSSL, SDL2, Vulkan etc.)
+    -   Demo: Build a Hello World CGo app (calls printf) with bagccgop
+        and run it on the PowerBook
+    -   Using a tool like this makes sure that your app is actually
+        portable and notifies you if dependencies are introduced which
+        break portability
+
+-   Hydrun
+
+    -   Tool to run a command in the current directory on another
+        processor architecture or operating system
+    -   Is very useful for both building software and testing software
+        (the “runtime equivalent” of tools like bagop and bagccgop)
+    -   Enables reproducibility of the build system and decreases
+        reliance on available (public) build environments like the VMs
+        available on GitHub actions
+    -   Can be used to run your build locally and prevent issues which
+        would otherwise only be “testable” by pushing to i.e. the Git
+        repository connected to the CI system
+    -   Can be used to test built binaries, i.e. you can build a static
+        binary on Debian GNU/Linux through hydrun, bagop and bagccgop
+        and then test if the binary is actually static by running it in
+        Alpine Linux using it
+
+-   GitHub Actions
+
+-   Semantic Release
+
 Operation
 
 -   Sentry
 -   OpenTelemetry
 -   Prometheus
 -   Grafana
-
-Pipelines
-
--   Bagop
--   Hydrun
--   GitHub Actions
--   Semantic Release

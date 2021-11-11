@@ -1,3 +1,9 @@
+commit c0cf3cad58a5078f9546c7d02479bef3cc020b56
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Nov 11 09:34:53 2021 +0100
+
+    feat: Add notes on proprietary distribution mechanisms, bagop/bagccgop and hydrun
+
 commit 80b2ad844fa9164d56b62ef9b4aa2527bd99e492
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 08:52:24 2021 +0100

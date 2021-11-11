@@ -48,11 +48,9 @@ Felicitas Pojtinger
 <li><a href="#in-comparison-distribution-to-android-windows-and-macos"><span class="toc-section-number">4.6</span> In Comparison: Distribution to Android, Windows and macOS</a></li>
 <li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">4.7</span> Distribution to Kubernetes/the Cloud</a></li>
 <li><a href="#distribution-to-webassembly"><span class="toc-section-number">4.8</span> Distribution to WebAssembly</a></li>
+<li><a href="#pipelines"><span class="toc-section-number">4.9</span> Pipelines</a></li>
 </ul></li>
-<li><a href="#operation"><span class="toc-section-number">5</span> Operation</a>
-<ul>
-<li><a href="#pipelines"><span class="toc-section-number">5.1</span> Pipelines</a></li>
-</ul></li>
+<li><a href="#operation"><span class="toc-section-number">5</span> Operation</a></li>
 </ul>
 </div>
 <div id="introduction" class="slide section level1" number="1">
@@ -307,9 +305,32 @@ Felicitas Pojtinger
 </ul>
 <h2 number="4.6" id="in-comparison-distribution-to-android-windows-and-macos"><span class="header-section-number">4.6</span> In Comparison: Distribution to Android, Windows and macOS</h2>
 <ul>
-<li>APKs in F-Droid repository</li>
-<li>MSI package with auto-updates</li>
-<li>DMG package with auto-updates</li>
+<li>As we are in a web context I will only take a short look at proprietary platform’s distribution mechanism</li>
+<li>The intention here is to show why these platforms are not viable for secure usage</li>
+<li>Android
+<ul>
+<li>APKs can be published to a “app store” which is comparable to a repository, i.e. F-Droid, Huawei AppGallery, Samsung Galaxy, Amazon App Store or Google Play.</li>
+<li>APKs are ZIP files with a Manifest, Dalvik Bytecode, Resources and native libraries</li>
+<li>Updates are handled by the app store</li>
+<li>Permissions are handled by the operating system</li>
+</ul></li>
+<li>Windows
+<ul>
+<li>MSI packages or self-extracting installers are used</li>
+<li>No concept of source or binary packages, no reproducibility - most software is fully proprietary and violates the user’s rights</li>
+<li>Files are tracked through the registry, but arbitrary code can be run at install time</li>
+<li>Has an app store without apps</li>
+<li>Almost all apps implement their own update systems which replaces the app itself with the update</li>
+</ul></li>
+<li>macOS
+<ul>
+<li>DMG images or <code>.pkg</code> installers are used</li>
+<li>No concept of source or binary packages, no reproducibility - most software is fully proprietary and violates the user’s rights</li>
+<li>Files are not tracked, but in the case or a DMG image are extracted</li>
+<li>Sandboxing is possible, but not widely used</li>
+<li>Has a heavily restricted app store which costs $100 per year and a $2000 computer to send apps to</li>
+<li>Most apps implement their own update systems which replaces the app itself with the update</li>
+</ul></li>
 </ul>
 <h2 number="4.7" id="distribution-to-kubernetesthe-cloud"><span class="header-section-number">4.7</span> Distribution to Kubernetes/the Cloud</h2>
 <ul>
@@ -323,6 +344,37 @@ Felicitas Pojtinger
 <li>WASM-Binary</li>
 <li>WASI/wasm_exec equivalents</li>
 </ul>
+<h2 number="4.9" id="pipelines"><span class="header-section-number">4.9</span> Pipelines</h2>
+<ul>
+<li><p>bagop &amp; bagccgop</p>
+<ul>
+<li>Tools to build for a lot of platforms</li>
+<li>Examples in Go, but these kind of tools exist for almost all programming languages</li>
+<li>Cloud environments and Kubernetes clusters are heterogeneous: They can have many different CPU architectures (x86_64, arm64, riscv64, ppc64 etc.)</li>
+<li>Portability is the key factor; your apps should not assume their target platforms and use standard build systems, which makes this much easier</li>
+<li>bagop and bagccgop try to build for all possible targets (i.e. Linux on riscv64, FreeBSD on x86_64 etc.) by default and then allows you to disable platforms which one can’t compile for</li>
+<li>bagop works for pure Go, is fast and builds for ~40 targets by default</li>
+<li>Demo: Build a Hello World Go app with bagop</li>
+<li>C libraries further complicate the situation: These require dynamically linked libraries and headers at compile/runtime, which means that they also require related dependencies at compile time for the specific target architecture and operating system, even if static linking is used</li>
+<li>The solution is to either use tweaked <code>chroot</code>s and a cross-compiler (fast but tricky to set up) or <code>binfmt</code> and <code>qemu-user-static</code> (slow but easy to set up)</li>
+<li>bagccgop is an automated way to use the first solution</li>
+<li>Can build for all Debian-supported platforms (including “esoteric” ones like 32-bit PowerPC)</li>
+<li>Can build static binaries with CGo thanks to GCCGo</li>
+<li>Allows the use of pretty much any C library with “cross-compilation by default” (OpenSSL, SDL2, Vulkan etc.)</li>
+<li>Demo: Build a Hello World CGo app (calls <code>printf</code>) with bagccgop and run it on the PowerBook</li>
+<li>Using a tool like this makes sure that your app is actually portable and notifies you if dependencies are introduced which break portability</li>
+</ul></li>
+<li><p>Hydrun</p>
+<ul>
+<li>Tool to run a command in the current directory on another processor architecture or operating system</li>
+<li>Is very useful for both building software and testing software (the “runtime equivalent” of tools like bagop and bagccgop)</li>
+<li>Enables reproducibility of the build system and decreases reliance on available (public) build environments like the VMs available on GitHub actions</li>
+<li>Can be used to run your build locally and prevent issues which would otherwise only be “testable” by pushing to i.e. the Git repository connected to the CI system</li>
+<li>Can be used to test built binaries, i.e. you can build a static binary on Debian GNU/Linux through hydrun, bagop and bagccgop and then test if the binary is actually static by running it in Alpine Linux using it</li>
+</ul></li>
+<li><p>GitHub Actions</p></li>
+<li><p>Semantic Release</p></li>
+</ul>
 </div>
 <div id="operation" class="slide section level1" number="5">
 <h1 number="5"><span class="header-section-number">5</span> Operation</h1>
@@ -331,13 +383,6 @@ Felicitas Pojtinger
 <li>OpenTelemetry</li>
 <li>Prometheus</li>
 <li>Grafana</li>
-</ul>
-<h2 number="5.1" id="pipelines"><span class="header-section-number">5.1</span> Pipelines</h2>
-<ul>
-<li>Bagop</li>
-<li>Hydrun</li>
-<li>GitHub Actions</li>
-<li>Semantic Release</li>
 </ul>
 </div>
 </body>
