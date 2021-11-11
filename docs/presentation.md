@@ -1,8 +1,11 @@
-% Uni Web Topics Presentation
-% Felicitas Pojtinger
-% \today
-\tableofcontents
-\newpage
+---
+author: [Felicitas Pojtinger]
+date: "2021-11-19"
+subject: "Web Topics Notes: Presentation on Cloud Native Development"
+keywords: [docker, linux, kubernetes, helm, skaffold]
+subtitle: "Presentation on Cloud Native Development"
+lang: "en"
+...
 
 # Uni Web Topics Presentation
 
