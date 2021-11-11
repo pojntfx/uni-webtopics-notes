@@ -431,9 +431,18 @@
 <section id="distribution-to-linux-universal" data-number="0.4.5">
 <h3 data-number="1.4.5"><span class="header-section-number">1.4.5</span> Distribution to Linux (universal)</h3>
 <ul>
-<li>Flatpak overview</li>
-<li>Flatpak’s build system and differences to traditional packages</li>
-<li>Flatpak repository</li>
+<li>Flatpak is a universal package format for Linux (“apps for Linux”)</li>
+<li>Sandboxed</li>
+<li>Standalone/runtime-based (does not depend on OS-provided libraries)</li>
+<li>Runs on all Linux distributions, even older major releases: Allows the user to install modern software on stable systems like Debian</li>
+<li>Permission system: Camera, File Access, Terminals</li>
+<li>Portals: Allow interaction with host system (i.e. screen sharing, file access etc.)</li>
+<li>Includes a universal repository system</li>
+<li>Demo: Setting up Flatpak and installing “Video Downloader”</li>
+<li>No concept of source packages; a single YAML/JSON manifest (reverse FQDN) is the source package and serves as the build system too</li>
+<li>Tight integration with GNOME Builder</li>
+<li>Demo: Creating and building a Flatpak with GNOME</li>
+<li>Why is Flatpak relevant in a web context?: Similar to Docker, which I will show later</li>
 </ul>
 </section>
 <section id="in-comparison-distribution-to-android-windows-and-macos" data-number="0.4.6">
