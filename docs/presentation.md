@@ -290,10 +290,39 @@ SPDX-License-Identifier: AGPL-3.0
   - Is very useful for both building software and testing software (the "runtime equivalent" of tools like bagop and bagccgop)
   - Enables reproducibility of the build system and decreases reliance on available (public) build environments like the VMs available on GitHub actions
   - Can be used to run your build locally and prevent issues which would otherwise only be "testable" by pushing to i.e. the Git repository connected to the CI system
-  - Can be used to test built binaries, i.e. you can build a static binary on Debian GNU/Linux through hydrun, bagop and bagccgop and then test if the binary is actually static by running it in Alpine Linux using it
+  - Can be used to test built binaries
+  - Demo: Build a static binary on Debian GNU/Linux through hydrun, bagop and bagccgop and then test if the binary is actually static by running it in Alpine Linux using it
 
 - GitHub Actions
-- Semantic Release
+
+  - Allows you to run commands on remote, ad-hoc machines in response to triggers (i.e. a commit has been pushed to a Git repository or a schedule)
+  - Can be used to build, test and publish software projects
+  - Is fairly generic and can be extended to use custom actions written in i.e. JavaScript
+  - Is configured using YAML
+  - Can use GitHub's hosted machines or self-hosted nodes
+  - **on**: Describes the triggers for the build system
+  - **jobs**: Describes the commands to run and actions to execute for a build configuration
+  - **strategy**: Describes a matrix of build configurations that can be executed in parallel (i.e. different binaries for the project, different build commands)
+  - Pre-written actions can be very useful as a low-maintenance way to add complex functionality:
+    - `actions/checkout`: `git clone`s the source code of the branch on which the event has been triggered
+    - `docker/setup-qemu-action`: Installs QEMU, which allows the pipeline to run binaries for different target architectures
+    - `docker/setup-buildx-action`: Installs `buildx`, the next-generation build command for Docker with better support for multiple architectures
+    - `actions/upload-artifact` and `actions/download-artifact`: Upload/download an artifact to the current run's cache (i.e. to exchange it between jobs)
+    - `marvinpinto/action-automatic-releases`: Create as a GitHub releases and uploads assets; see the next section
+
+- Semantic Versioning and Semantic Release
+  - Defines a formalized versioning scheme
+  - Used almost universally
+  - Three parts of a version: MAJOR.MINOR.PATCH
+    - MAJOR: Increment if incompatible API changes were made
+    - MINOR: Increment if backwards-compatible features were added
+    - PATCH: Increment if backwards-compatible bug fixes were added
+  - Is not only useful to those writing & releasing software, but also those consuming it (i.e. distributions like Debian or projects which depend on external libraries)
+  - Semantic Release is a tool to make using it easier
+    - 1. `git tag` (i.e. `git tag v0.1.0`)
+    - 2. Push
+    - Semantic Release will create a GitHub release, corresponding changelog and upload/publish release assets (i.e. source code or binaries)
+    - Demo: Release example software using it
 
 ## Operation
 
