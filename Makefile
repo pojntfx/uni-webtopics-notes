@@ -1,32 +1,96 @@
+# Public variables
+OUTPUT_DIR ?= out
+
+# Private variables
+obj = $(shell ls docs/*.md | sed -r 's@docs/(.*).md@\1@g')
+formats = pdf slides.pdf html slides.html epub odt txt
 all: build
 
-qr:
+# Build
+build: build/archive
+$(addprefix build/,$(obj)):
+	$(MAKE) build-pdf/$(subst build/,,$@) build-slides.pdf/$(subst build/,,$@) build-html/$(subst build/,,$@) build-slides.html/$(subst build/,,$@) build-epub/$(subst build/,,$@) build-odt/$(subst build/,,$@) build-txt/$(subst build/,,$@)
+
+# Build PDF
+$(addprefix build-pdf/,$(obj)): build/qr
+	mkdir -p "$(OUTPUT_DIR)"
+	pandoc --template eisvogel --listings --shift-heading-level-by=-1 --number-sections --resource-path=docs -M titlepage=true -M toc=true -M toc-own-page=true -M linkcolor="{HTML}{006666}" -o "$(OUTPUT_DIR)/$(subst build-pdf/,,$@).pdf" "docs/$(subst build-pdf/,,$@).md"
+	
+# Build PDF slides
+$(addprefix build-slides.pdf/,$(obj)): build/qr
+	mkdir -p "$(OUTPUT_DIR)"
+	pandoc --to beamer --listings --shift-heading-level-by=-1 --number-sections --resource-path=docs --slide-level=3 --variable theme=metropolis -o "$(OUTPUT_DIR)/$(subst build-slides.pdf/,,$@).slides.pdf" "docs/$(subst build-slides.pdf/,,$@).md"
+
+# Build HTML
+$(addprefix build-html/,$(obj)): build/qr
+	mkdir -p "$(OUTPUT_DIR)"
+	pandoc --shift-heading-level-by=-1 --to markdown --standalone "docs/$(subst build-html/,,$@).md" | pandoc --to html5 --listings --shift-heading-level-by=1 --number-sections --resource-path=docs --toc --katex --self-contained --number-offset=1 -o "$(OUTPUT_DIR)/$(subst build-html/,,$@).html"
+
+# Build HTML slides
+$(addprefix build-slides.html/,$(obj)): build/qr
+	mkdir -p "$(OUTPUT_DIR)"
+	pandoc --to slidy --listings --shift-heading-level-by=-1 --number-sections --resource-path=docs --toc --katex --self-contained -o "$(OUTPUT_DIR)/$(subst build-slides.html/,,$@).slides.html" "docs/$(subst build-slides.html/,,$@).md"
+
+# Build EPUB
+$(addprefix build-epub/,$(obj)): build/qr
+	mkdir -p "$(OUTPUT_DIR)"
+	pandoc --listings --shift-heading-level-by=-1 --number-sections --resource-path=docs -M titlepage=true -M toc=true -M toc-own-page=true -M linkcolor="{HTML}{006666}" -o "$(OUTPUT_DIR)/$(subst build-epub/,,$@).epub" "docs/$(subst build-epub/,,$@).md"
+
+# Build ODT
+$(addprefix build-odt/,$(obj)): build/qr
+	mkdir -p "$(OUTPUT_DIR)"
+	pandoc --listings --shift-heading-level-by=-1 --number-sections --resource-path=docs -M titlepage=true -M toc=true -M toc-own-page=true -M linkcolor="{HTML}{006666}" -o "$(OUTPUT_DIR)/$(subst build-odt/,,$@).odt" "docs/$(subst build-odt/,,$@).md"
+
+# Build txt
+$(addprefix build-txt/,$(obj)): build/qr
+	mkdir -p "$(OUTPUT_DIR)"
+	pandoc --to plain --listings --shift-heading-level-by=-1 --number-sections --resource-path=docs --toc --self-contained -o "$(OUTPUT_DIR)/$(subst build-txt/,,$@).txt" "docs/$(subst build-txt/,,$@).md"
+
+# Build metadata
+build/metadata:
+	mkdir -p "$(OUTPUT_DIR)"
+	git log > "$(OUTPUT_DIR)"/CHANGELOG.txt
+	cp LICENSE "$(OUTPUT_DIR)"/LICENSE.txt
+	pandoc --shift-heading-level-by=-1 --to markdown --standalone "README.md" | pandoc --to html5 --listings --shift-heading-level-by=1 --number-sections --resource-path=docs --toc --katex --self-contained --number-offset=1 -o "$(OUTPUT_DIR)/README.html"
+
+# Build QR code
+build/qr:
 	mkdir -p docs/static
-	docker run -v "$(PWD):/qr:z" -e QR_TEXT="$$(sed -n '4 p' docs/metadata.txt)" -e QR_FILE=docs/static/qr.png valien/docker-qr-generator
+	qr "https://$$(git remote get-url origin | sed -r 's|^.*@(.*):|\1/|g' | sed 's@.*://@@g' | sed 's/.git$$//g')" | tee docs/static/qr.png>/dev/null
 
-.PHONY: docs
-docs: qr
-	mkdir -p out/docs
-	if [ -d "docs/static" ]; then cp -r docs/static out/docs; fi
-	echo "<!DOCTYPE html><meta charset="utf-8"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"description\" content=\"$$(sed -n '2 p' docs/metadata.txt)\"><link rel=\"stylesheet\" href=\"https://unpkg.com/marx-css/css/marx.min.css\"><title>$$(sed -n '1 p' docs/metadata.txt)</title><main><h1>$$(sed -n '1 p' docs/metadata.txt)</h1><p>$$(sed -n '2 p' docs/metadata.txt)</p><hr><a href=\"$$(sed -n '4 p' docs/metadata.txt)\" target=\"_blank\">📃 View source (✍️ $$(sed -n '3 p' docs/metadata.txt))</a><br><a href=\"$$(sed -n '5 p' docs/metadata.txt)\" download=\"$$(sed -n '1 p' docs/metadata.txt).zip\">📥 Download all as ZIP</a><hr><div>You may do the following:</div><ul>" > "out/docs/index.html"
-	for document in docs/*.md; do\
-		echo "Compiling $${document} ..." ;\
-    	docker run -v "$(PWD):/data:z" pandoc/latex "$${document}" --variable urlcolor=blue --shift-heading-level-by=-1 --number-sections --resource-path=docs --pdf-engine=xelatex -o "out/$${document}.pdf" & docker run -v "$(PWD):/data:z" pandoc/latex "$${document}" --number-sections --resource-path=docs --toc --toc-depth=6 --katex --self-contained -t html5 -o "out/$${document}.html" & docker run -v "$(PWD):/data:z" pandoc/latex "$${document}" --number-sections --resource-path=docs --katex --self-contained -t slidy --slide-level 3 -o "out/$${document}.slides.html" & docker run -v "$(PWD):/data:z" pandoc/latex "$${document}" --variable urlcolor=blue --shift-heading-level-by=-1 --number-sections --resource-path=docs -t beamer --slide-level 3 --pdf-engine=xelatex -o "out/$${document}.slides.pdf";\
-		echo "<li><a href=\"$${document#docs/}.html\" target=\"_blank\">🌐 View $${document#docs/} in your browser</a> (also available as <a href=\"$${document#docs/}.slides.html\" target=\"_blank\">slides</a>) or <a href=\"$${document#docs/}.pdf\" target=\"_blank\">📜 open $${document#docs/} as PDF</a> (also available as <a href=\"$${document#docs/}.slides.pdf\" target=\"_blank\">slides</a>)" >> "out/docs/index.html";\
-	done
-	echo "</ul><div><strong><em>$$(sed -n '6 p' docs/metadata.txt)</em></strong></div></main>" >> "out/docs/index.html"
-	mkdir -p "out/release"
-	zip -j -r "out/release/all.zip" "out/docs"
+# Build tarball
+build/tarball: build/qr build/metadata
+	mkdir -p "$(OUTPUT_DIR)"
+	tar zcvf "$(OUTPUT_DIR)"/source.tar.gz --exclude-from=.gitignore --exclude=.git --exclude="$(OUTPUT_DIR)" .
 
-build: docs
+# Build tree
+build/tree: $(addprefix build/,$(obj)) build/tarball
+	mkdir -p "$(OUTPUT_DIR)"
+	tree -T "$$(git remote get-url origin | sed -r 's|^.*@(.*):|\1/|g' | sed 's@.*://@@g' | sed 's/.git$$//g')" -H '.' -I 'index.html|release.zip' -o "$(OUTPUT_DIR)"/index.html "$(OUTPUT_DIR)"
 
-dev:
-	while [ -z "$${MAKE_PID}" ] || [ -n "$$(inotifywait -q -r -e modify docs/*.md)" ]; do\
-		$(MAKE) PWD=$(PWD) & export MAKE_PID="$$!";\
-	done
+# Build archive
+build/archive: build/tree
+	mkdir -p "$(OUTPUT_DIR)"
+	zip -j -x 'release.zip' -FSr "$(OUTPUT_DIR)"/release.zip "$(OUTPUT_DIR)"/*
 
+# Open
+$(foreach o,$(obj),$(foreach f,$(formats),open-$(f)/$(o))):
+	xdg-open "$(OUTPUT_DIR)/$(notdir $(subst open-,,$@)).$(subst /,,$(dir $(subst open-,,$@)))"
+
+# Develop
+dev: build
+	while inotifywait -r -e close_write --exclude 'out' .; do $(MAKE); done
+$(foreach o,$(obj),$(foreach f,$(formats),dev-$(f)/$(o))):
+	$(MAKE) $(subst dev-,build-,$@)
+	while inotifywait -r -e close_write --exclude 'out' .; do $(MAKE) $(subst dev-,build-,$@); done
+
+# Clean
 clean:
-	rm -rf out
+	rm -rf "$(OUTPUT_DIR)" docs/static/qr.png
 
+# Dependencies
 depend:
-	docker pull pandoc/latex
+	pip install pillow qrcode
+	curl -L -o /tmp/Eisvogel.zip 'https://github.com/Wandmalfarbe/pandoc-latex-template/releases/latest/download/Eisvogel.zip'
+	mkdir -p "$${HOME}/.local/share/pandoc/templates"
+	unzip -p /tmp/Eisvogel.zip eisvogel.latex | tee "$${HOME}/.local/share/pandoc/templates/eisvogel.latex">/dev/null

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -L -o Makefile 'https://raw.githubusercontent.com/pojntfx/uni-netpractice-notes/main/Makefile'
