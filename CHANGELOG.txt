@@ -1,3 +1,21 @@
+commit 80b2ad844fa9164d56b62ef9b4aa2527bd99e492
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Nov 11 08:52:24 2021 +0100
+
+    feat: Add notes on Flatpak
+
+commit b9a55af0f664e31af82f75f80e0d931aa08f30d1
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Nov 11 08:38:54 2021 +0100
+
+    feat: Add Makefile to gitignore
+
+commit ce6fca8a70d39215737d9105a01ad6374085c6d1
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Nov 11 08:38:34 2021 +0100
+
+    fix: Drop Makefile
+
 commit ff439c56545733cb680fab318305e52f0708bf03
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 08:37:39 2021 +0100

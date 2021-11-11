@@ -401,9 +401,22 @@ Distribution to Debian GNU/Linux
 
 Distribution to Linux (universal)
 
--   Flatpak overview
--   Flatpak’s build system and differences to traditional packages
--   Flatpak repository
+-   Flatpak is a universal package format for Linux (“apps for Linux”)
+-   Sandboxed
+-   Standalone/runtime-based (does not depend on OS-provided libraries)
+-   Runs on all Linux distributions, even older major releases: Allows
+    the user to install modern software on stable systems like Debian
+-   Permission system: Camera, File Access, Terminals
+-   Portals: Allow interaction with host system (i.e. screen sharing,
+    file access etc.)
+-   Includes a universal repository system
+-   Demo: Setting up Flatpak and installing “Video Downloader”
+-   No concept of source packages; a single YAML/JSON manifest (reverse
+    FQDN) is the source package and serves as the build system too
+-   Tight integration with GNOME Builder
+-   Demo: Creating and building a Flatpak with GNOME
+-   Why is Flatpak relevant in a web context?: Similar to Docker, which
+    I will show later
 
 In Comparison: Distribution to Android, Windows and macOS
 
