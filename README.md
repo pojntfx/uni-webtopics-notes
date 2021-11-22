@@ -2,11 +2,11 @@
 
 Notes for the Spezielle Themen für Web-Anwendungen (special topics for web applications) course at HdM Stuttgart.
 
-[![hydrun CI](https://github.com/pojntfx/uni-webtopics-notes/actions/workflows/hydrun.yaml/badge.svg)](https://github.com/pojntfx/uni-webtopics-notes/actions/workflows/hydrun.yaml)
+[![Deliverance CI](https://github.com/pojntfx/uni-webtopics-notes/actions/workflows/deliverance.yaml/badge.svg)](https://github.com/pojntfx/uni-webtopics-notes/actions/workflows/deliverance.yaml)
 
 ## Overview
 
-You can [view the notes on GitHub pages](https://pojntfx.github.io/uni-webtopics-notes/) or [download them from GitHub releases](https://github.com/pojntfx/uni-webtopics-notes/releases/latest).
+You can [view the notes on GitHub pages](https://pojntfx.github.io/uni-webtopics-notes/), [download them from GitHub releases](https://github.com/pojntfx/uni-webtopics-notes/releases/latest) or [check out the source on GitHub](https://github.com/pojntfx/uni-webtopics-notes).
 
 ## Contributing
 
@@ -17,6 +17,7 @@ To build and open a note locally, run the following:
 ```shell
 $ git clone https://github.com/pojntfx/uni-webtopics-notes.git
 $ cd uni-webtopics-notes
+$ ./configure
 $ make depend
 $ make dev-pdf/your-note # Use Bash completion to list available targets
 # In another terminal
