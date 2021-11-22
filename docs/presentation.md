@@ -267,7 +267,6 @@ SPDX-License-Identifier: AGPL-3.0
 ### Pipelines
 
 - bagop & bagccgop
-
   - Tools to build for a lot of platforms
   - Examples in Go, but these kind of tools exist for almost all programming languages
   - Cloud environments and Kubernetes clusters are heterogeneous: They can have many different CPU architectures (x86_64, arm64, riscv64, ppc64 etc.)
@@ -283,18 +282,14 @@ SPDX-License-Identifier: AGPL-3.0
   - Allows the use of pretty much any C library with "cross-compilation by default" (OpenSSL, SDL2, Vulkan etc.)
   - Demo: Build a Hello World CGo app (calls `printf`) with bagccgop and run it on the PowerBook
   - Using a tool like this makes sure that your app is actually portable and notifies you if dependencies are introduced which break portability
-
 - Hydrun
-
   - Tool to run a command in the current directory on another processor architecture or operating system
   - Is very useful for both building software and testing software (the "runtime equivalent" of tools like bagop and bagccgop)
   - Enables reproducibility of the build system and decreases reliance on available (public) build environments like the VMs available on GitHub actions
   - Can be used to run your build locally and prevent issues which would otherwise only be "testable" by pushing to i.e. the Git repository connected to the CI system
   - Can be used to test built binaries
   - Demo: Build a static binary on Debian GNU/Linux through hydrun, bagop and bagccgop and then test if the binary is actually static by running it in Alpine Linux using it
-
 - GitHub Actions
-
   - Allows you to run commands on remote, ad-hoc machines in response to triggers (i.e. a commit has been pushed to a Git repository or a schedule)
   - Can be used to build, test and publish software projects
   - Is fairly generic and can be extended to use custom actions written in i.e. JavaScript
@@ -309,7 +304,6 @@ SPDX-License-Identifier: AGPL-3.0
     - `docker/setup-buildx-action`: Installs `buildx`, the next-generation build command for Docker with better support for multiple architectures
     - `actions/upload-artifact` and `actions/download-artifact`: Upload/download an artifact to the current run's cache (i.e. to exchange it between jobs)
     - `marvinpinto/action-automatic-releases`: Create as a GitHub releases and uploads assets; see the next section
-
 - Semantic Versioning and Semantic Release
   - Defines a formalized versioning scheme
   - Used almost universally
@@ -319,8 +313,8 @@ SPDX-License-Identifier: AGPL-3.0
     - PATCH: Increment if backwards-compatible bug fixes were added
   - Is not only useful to those writing & releasing software, but also those consuming it (i.e. distributions like Debian or projects which depend on external libraries)
   - Semantic Release is a tool to make using it easier
-    - 1. `git tag` (i.e. `git tag v0.1.0`)
-    - 2. Push
+    - 1: `git tag` (i.e. `git tag v0.1.0`)
+    - 2: Push
     - Semantic Release will create a GitHub release, corresponding changelog and upload/publish release assets (i.e. source code or binaries)
     - Demo: Release example software using it
 
