@@ -493,7 +493,7 @@
 <section id="pipelines" data-number="0.4.9">
 <h3 data-number="1.4.9"><span class="header-section-number">1.4.9</span> Pipelines</h3>
 <ul>
-<li><p>bagop &amp; bagccgop</p>
+<li>bagop &amp; bagccgop
 <ul>
 <li>Tools to build for a lot of platforms</li>
 <li>Examples in Go, but these kind of tools exist for almost all programming languages</li>
@@ -511,16 +511,53 @@
 <li>Demo: Build a Hello World CGo app (calls <code>printf</code>) with bagccgop and run it on the PowerBook</li>
 <li>Using a tool like this makes sure that your app is actually portable and notifies you if dependencies are introduced which break portability</li>
 </ul></li>
-<li><p>Hydrun</p>
+<li>Hydrun
 <ul>
 <li>Tool to run a command in the current directory on another processor architecture or operating system</li>
 <li>Is very useful for both building software and testing software (the “runtime equivalent” of tools like bagop and bagccgop)</li>
 <li>Enables reproducibility of the build system and decreases reliance on available (public) build environments like the VMs available on GitHub actions</li>
 <li>Can be used to run your build locally and prevent issues which would otherwise only be “testable” by pushing to i.e. the Git repository connected to the CI system</li>
-<li>Can be used to test built binaries, i.e. you can build a static binary on Debian GNU/Linux through hydrun, bagop and bagccgop and then test if the binary is actually static by running it in Alpine Linux using it</li>
+<li>Can be used to test built binaries</li>
+<li>Demo: Build a static binary on Debian GNU/Linux through hydrun, bagop and bagccgop and then test if the binary is actually static by running it in Alpine Linux using it</li>
 </ul></li>
-<li><p>GitHub Actions</p></li>
-<li><p>Semantic Release</p></li>
+<li>GitHub Actions
+<ul>
+<li>Allows you to run commands on remote, ad-hoc machines in response to triggers (i.e. a commit has been pushed to a Git repository or a schedule)</li>
+<li>Can be used to build, test and publish software projects</li>
+<li>Is fairly generic and can be extended to use custom actions written in i.e. JavaScript</li>
+<li>Is configured using YAML</li>
+<li>Can use GitHub’s hosted machines or self-hosted nodes</li>
+<li><strong>on</strong>: Describes the triggers for the build system</li>
+<li><strong>jobs</strong>: Describes the commands to run and actions to execute for a build configuration</li>
+<li><strong>strategy</strong>: Describes a matrix of build configurations that can be executed in parallel (i.e. different binaries for the project, different build commands)</li>
+<li>Pre-written actions can be very useful as a low-maintenance way to add complex functionality:
+<ul>
+<li><code>actions/checkout</code>: <code>git clone</code>s the source code of the branch on which the event has been triggered</li>
+<li><code>docker/setup-qemu-action</code>: Installs QEMU, which allows the pipeline to run binaries for different target architectures</li>
+<li><code>docker/setup-buildx-action</code>: Installs <code>buildx</code>, the next-generation build command for Docker with better support for multiple architectures</li>
+<li><code>actions/upload-artifact</code> and <code>actions/download-artifact</code>: Upload/download an artifact to the current run’s cache (i.e. to exchange it between jobs)</li>
+<li><code>marvinpinto/action-automatic-releases</code>: Create as a GitHub releases and uploads assets; see the next section</li>
+</ul></li>
+</ul></li>
+<li>Semantic Versioning and Semantic Release
+<ul>
+<li>Defines a formalized versioning scheme</li>
+<li>Used almost universally</li>
+<li>Three parts of a version: MAJOR.MINOR.PATCH
+<ul>
+<li>MAJOR: Increment if incompatible API changes were made</li>
+<li>MINOR: Increment if backwards-compatible features were added</li>
+<li>PATCH: Increment if backwards-compatible bug fixes were added</li>
+</ul></li>
+<li>Is not only useful to those writing &amp; releasing software, but also those consuming it (i.e. distributions like Debian or projects which depend on external libraries)</li>
+<li>Semantic Release is a tool to make using it easier
+<ul>
+<li>1: <code>git tag</code> (i.e. <code>git tag v0.1.0</code>)</li>
+<li>2: Push</li>
+<li>Semantic Release will create a GitHub release, corresponding changelog and upload/publish release assets (i.e. source code or binaries)</li>
+<li>Demo: Release example software using it</li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
 </section>
