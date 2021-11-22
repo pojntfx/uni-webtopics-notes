@@ -1,47 +1,70 @@
-Uni Web Topics Presentation
+-   [<span class="toc-section-number">0.1</span>
+    Introduction](#introduction)
+    -   [<span class="toc-section-number">0.1.1</span>
+        Contributing](#contributing)
+    -   [<span class="toc-section-number">0.1.2</span>
+        License](#license)
+-   [<span class="toc-section-number">0.2</span> Overview](#overview)
+-   [<span class="toc-section-number">0.3</span>
+    Development](#development)
+-   [<span class="toc-section-number">0.4</span>
+    Distribution](#distribution)
+    -   [<span class="toc-section-number">0.4.1</span> Basic
+        Distribution Principles](#basic-distribution-principles)
+    -   [<span class="toc-section-number">0.4.2</span> Packaging
+        Overview](#packaging-overview)
+    -   [<span class="toc-section-number">0.4.3</span> Distribution to
+        RedHat Enterprise
+        Linux](#distribution-to-redhat-enterprise-linux)
+    -   [<span class="toc-section-number">0.4.4</span> Distribution to
+        Debian GNU/Linux](#distribution-to-debian-gnulinux)
+    -   [<span class="toc-section-number">0.4.5</span> Distribution to
+        Linux (universal)](#distribution-to-linux-universal)
+    -   [<span class="toc-section-number">0.4.6</span> In Comparison:
+        Distribution to Android, Windows and
+        macOS](#in-comparison-distribution-to-android-windows-and-macos)
+    -   [<span class="toc-section-number">0.4.7</span> Distribution to
+        Kubernetes/the Cloud](#distribution-to-kubernetesthe-cloud)
+    -   [<span class="toc-section-number">0.4.8</span> Distribution to
+        WebAssembly](#distribution-to-webassembly)
+    -   [<span class="toc-section-number">0.4.9</span>
+        Pipelines](#pipelines)
+-   [<span class="toc-section-number">0.5</span> Operation](#operation)
+
+Presentation on Cloud Native Development
+
 Felicitas Pojtinger
+
 2021-11-19
 
--   1 Introduction
-    -   1.1 Contributing
-    -   1.2 License
--   2 Overview
--   3 Development
--   4 Distribution
-    -   4.1 Basic Distribution Principles
-    -   4.2 Packaging Overview
-    -   4.3 Distribution to RedHat Enterprise Linux
-    -   4.4 Distribution to Debian GNU/Linux
-    -   4.5 Distribution to Linux (universal)
-    -   4.6 In Comparison: Distribution to Android, Windows and macOS
-    -   4.7 Distribution to Kubernetes/the Cloud
-    -   4.8 Distribution to WebAssembly
-    -   4.9 Pipelines
--   5 Operation
+## Introduction
 
-Introduction
+### Contributing
 
-Contributing
+These study materials are heavily based on [professor Heuzeroth’s
+“Spezielle Themen für Web-Anwendungen” lecture at HdM
+Stuttgart](https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212237).
 
-These study materials are heavily based on professor Heuzeroth’s
-“Spezielle Themen für Web-Anwendungen” lecture at HdM Stuttgart.
+**Found an error or have a suggestion?** Please open an issue on GitHub
+([github.com/pojntfx/uni-webtopics-notes](https://github.com/pojntfx/uni-webtopics-notes)):
 
-Found an error or have a suggestion? Please open an issue on GitHub
-(github.com/pojntfx/uni-webtopics-notes):
-
-[QR code to source repository]
+<figure>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADB0lEQVR4nO2czW3jMBCF3ywF5EgBKWBLoTpwSalpOxBLcQEByKMBCm8P/BHt5JJ1Vnak4cGAZX4wCY8eH4cjC/Hl5n99nQEUUkghhRRSSKF9QlLaUK76sV0bFwFi7TA9ZHgKbQ85kmQA4MdFZIoinC0JxBcCMCRJXkPbDU+h7aFYBEDezi/kbEmZosjasVOQnzInhb4JWgTuPACOCXABkOk/fZNCTwgNHy+ZBH+6CL0Ywo8QIj5qeAptDtWIsATyD28TxIUFAgDiCIj7A/SZrCefk0LfAPm8rwCAOCD7SRfaWyx5q/Go4Sm0tUb0AmATiLjktYL+dwKvOzz9nBS6B0LeVWY9gCEZDHNYzJa1rZ+S5Pzkc1LoHgg1z1AzDi4gpydKlNgEMgCcYZjzFhoRe4ZQbvv8xpCzTSDzxrNFSQ0Q1Yj9Q92qwdkmoCwdKHnMGSYryNpZI+IAUAmGdYdhEzjHAYC9CGd7ESDHyyOGp9ADVg1LwjFlu1Cs5CfX1EfsHmqrhmExDgEALKujCIYlIph01TgAVPMRcanrgiXgpyGJOw8Q2IsQWATNTDz9nBS6B6q7T3sjFCUpsdqKuoioRuwcajnLZcj5ST+afJBRmk0DEQfQT0O1lk8+J4XugaqPaKnJnHtgE4VguJ6Lq4/YP9RlqFYrmeMAQEtK1Karxu6h3kcAqPV1q1DANMnQvcYRoBYR5WgLWHeawdxuQVUj9g+h04MuXQk0R1HjhUF9xBGgzll2ptKtGgGgvqhGHAGqVXXxNRFxBAFD+PEd8KcEuDC2+rpFa6gOAIHXDdlK1nx2PgJz7AsnVCN2DWWNqDe/SfSndykV2DBJYAEgvubkFLcenkKbQ9cZqlILkY1DkQwUjWidVSMOAcX2UGctmwHao35eJJ+DlS4/ZE4KfQuU7UJYRCZLyttZpOav9OzzCNCHZ7q8mAQ/mQQ/vg9ENAmIAvqT+ogjQLc+Yq3J7yr2W7Gl+oj9Q72BbGcY3UMbpaQq1XMwjYi9Q6L/TKaQQgoppJBCCv0j9Bdy9rE3fYGmKgAAAABJRU5ErkJggg==" width="150" alt="QR code to source repository" /><figcaption aria-hidden="true">QR code to source repository</figcaption>
+</figure>
 
 If you like the study materials, a GitHub star is always appreciated :)
 
-License
+### License
 
-[AGPL-3.0 license badge]
+<figure>
+<img src="data:image/png;base64,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" width="128" alt="AGPL-3.0 license badge" /><figcaption aria-hidden="true">AGPL-3.0 license badge</figcaption>
+</figure>
 
 Uni Web Topics Presentation (c) 2021 Felicitas Pojtinger and contributors
 
 SPDX-License-Identifier: AGPL-3.0
 
-Overview
+## Overview
 
 -   What is DevOps?
 -   Which parts of the software lifecycle does it cover?
@@ -51,7 +74,7 @@ Overview
 -   What is “cloud native”?
 -   Why are “traditional” distribution methods still relevant?
 
-Development
+## Development
 
 -   DevOps: Also includes development!
 
@@ -145,9 +168,9 @@ Development
     -   Reverse HTTPS/TLS/UDP/TCP proxies to the public web
     -   Use SSH tunnels
 
-Distribution
+## Distribution
 
-Basic Distribution Principles
+### Basic Distribution Principles
 
 -   Binaries
 
@@ -161,21 +184,21 @@ Basic Distribution Principles
             binary portable across distributions. It also allows
             including all external dependencies into the binary,
             effectively making it a “single-file” distribution method
-        -   Dynamically linked: Thanks to dlopen and package management,
-            dynamic linking can also be used. Most of the time
-            (especially on non-Linux OSes), at least the C library and
-            external dependencies (i.e. SQLite) thus need to be
-            available in LD_LIBRARY_PATH at runtime; if they are not,
+        -   Dynamically linked: Thanks to `dlopen` and package
+            management, dynamic linking can also be used. Most of the
+            time (especially on non-Linux OSes), at least the C library
+            and external dependencies (i.e. `SQLite`) thus need to be
+            available in `LD_LIBRARY_PATH` at runtime; if they are not,
             the application can’t continue. This makes the binaries
             non-portable across distributions; for example, if a binary
             is built on a Debian 11 host, it most probably won’t run on
             a Debian 10 host due to the different versions of the GNU C
             library used. This does however also have a few big
             advantages, which apply especially to Linux distributions.
-        -   Demo: Creating a statically-linked (CGO_ENABLE=1) Go binary,
-            running ldd on it and running it in two containers (Debian
-            and Alpine Linux), then retrying it with a statically-linked
-            (CGO_ENABLE=0) binary
+        -   Demo: Creating a statically-linked (`CGO_ENABLE=1`) Go
+            binary, running `ldd` on it and running it in two containers
+            (Debian and Alpine Linux), then retrying it with a
+            statically-linked (`CGO_ENABLE=0`) binary
 
 -   GPG signing
 
@@ -191,7 +214,7 @@ Basic Distribution Principles
         binary has actually been produced by Alice, he can verify that
         the binary has actually been produced by Alice and hasn’t for
         example been infected with malware by a malicious actor, in
-        which the case the signature (usually a .asc file) no longer
+        which the case the signature (usually a `.asc` file) no longer
         matches.
     -   Demo: Creating a signed binary, verifying it (hydrapp),
         tampering with it (adding bytes to end), and re-verifying it
@@ -212,11 +235,11 @@ Basic Distribution Principles
         -   Distribution as a simple tarball
         -   Shipping static binaries
         -   Use standard build systems and methodologies (Go, Cargo,
-            Meson, Autotools, CMake etc.), never use custom bash scripts
-            to build your software; this will ensure that packaging the
-            software is much easier, as the tooling for the build system
-            probably already exists. It also vastly increases the
-            developer experience (DX).
+            Meson, Autotools, CMake etc.), *never* use custom bash
+            scripts to build your software; this will ensure that
+            packaging the software is much easier, as the tooling for
+            the build system probably already exists. It also vastly
+            increases the developer experience (DX).
         -   Inclusion of good release notes makes it much easier from a
             distro’s or developer’s perspective to be aware of changes
             that might break the build system or new runtime or target
@@ -272,22 +295,22 @@ Basic Distribution Principles
         -   Language, description etc. metadata
     -   The solutions: Packages!
 
-Packaging Overview
+### Packaging Overview
 
 -   What is a package?
 
     -   Includes the binary, assets, metadata and signature
     -   Is self-describing
-    -   Mostly some form of archive (i.e. RPM, .tar.gz) in combination
+    -   Mostly some form of archive (i.e. RPM, `.tar.gz`) in combination
         with a metadata file and signature
 
 -   What is a package manager?
 
     -   Can install, remove and update packages
     -   Mostly two components: Low-level tool to install and remove
-        package files (dpkg on Debian, rpm on Fedora) and a high-level
-        tool to search, download, install and resolve dependencies (apt
-        on Debian, dnf on Fedora)
+        package files (`dpkg` on Debian, `rpm` on Fedora) and a
+        high-level tool to search, download, install and resolve
+        dependencies (`apt` on Debian, `dnf` on Fedora)
     -   Can resolve and install runtime and build-time dependencies
         (i.e. dependency on C library, SQLite, SDL2, headers for cURL
         etc.)
@@ -310,13 +333,13 @@ Packaging Overview
     -   Source packages contain all information necessary to build the
         application (including source code, build-time dependencies,
         patches, metadata for package creation)
-    -   Tarballs: tar-files, tape archives: A linear storage format used
-        internally for physical tapes but also for files. Contains all
-        source code; often zipped (.tar.gz)
+    -   Tarballs: `tar`-files, tape archives: A linear storage format
+        used internally for physical tapes but also for files. Contains
+        all source code; often zipped (`.tar.gz`)
     -   Depending on the package format the source package can contain
         the source code (RedHat) or use a separate tarball (Debian)
     -   There can be additional tarballs, i.e. one with the original
-        source and one with the distro’s patches (i.e. .debian.tar.gz)
+        source and one with the distro’s patches (i.e. `.debian.tar.gz`)
     -   Many systems allow installing from the binary package (see
         following) and by downloading & rebuilding the source package
 
@@ -332,7 +355,7 @@ Packaging Overview
         for running the software and documentation can be large
     -   Can have different license from rest of software, i.e. GFDL
     -   Often ends in docs; i.e. in Alpine Linux, for the binary package
-        mariadb the documentation package is called mariadb-docs
+        `mariadb` the documentation package is called `mariadb-docs`
 
 -   Dependencies
 
@@ -347,17 +370,17 @@ Packaging Overview
     -   Dynamic linking is useful in distros as it allows the distro to
         update all important dependencies (i.e. the SSL library) at once
         as long as the ABI didn’t change
-    -   Versions and alternatives can be specified; i.e. Go and gccgo as
-        one of the Go compilers to choose from or OpenSSL and LibreSSL
-        as one of the SSL libraries to choose from
+    -   Versions and alternatives can be specified; i.e. Go and `gccgo`
+        as one of the Go compilers to choose from or OpenSSL and
+        LibreSSL as one of the SSL libraries to choose from
 
 -   Metadata
 
     -   Packages often have metadata: ID, Name, description, author,
         license, version, URL, changelog etc.
-    -   AppStream metadata (and to a certain degree, .desktop files) is
-        a standard for this data
-    -   .desktop files provide shortcuts, application categories and
+    -   AppStream metadata (and to a certain degree, `.desktop` files)
+        is a standard for this data
+    -   `.desktop` files provide shortcuts, application categories and
         window menu options (mostly of use in a desktop context, but can
         also be used as an alternative to launching binaries directly)
 
@@ -378,7 +401,7 @@ Packaging Overview
 
 -   Demo: Downloading, updating, extracting a package
 
-Distribution to RedHat Enterprise Linux
+### Distribution to RedHat Enterprise Linux
 
 -   RHEL is a very popular distribution and serves as the upstream of
     many other distros (CentOS, Rocky Linux etc.)
@@ -389,17 +412,17 @@ Distribution to RedHat Enterprise Linux
 -   RPM package format: Demo
 -   DNF package manager and repositories: Demo
 
-Distribution to Debian GNU/Linux
+### Distribution to Debian GNU/Linux
 
 -   Debian is another very popular distribution that also serves as the
-    upstream of many other distros (Ubuntu, Linux Mint, Pop!_OS etc.)
+    upstream of many other distros (Ubuntu, Linux Mint, Pop!\_OS etc.)
 -   Is based on the DEB package format and the APT package manager
 -   Community-Driven, completely Free Software
 -   5 years support per major release
 -   DEB package format: Demo
 -   APT package manager and repositories: Demo
 
-Distribution to Linux (universal)
+### Distribution to Linux (universal)
 
 -   Flatpak is a universal package format for Linux (“apps for Linux”)
 -   Sandboxed
@@ -418,7 +441,7 @@ Distribution to Linux (universal)
 -   Why is Flatpak relevant in a web context?: Similar to Docker, which
     I will show later
 
-In Comparison: Distribution to Android, Windows and macOS
+### In Comparison: Distribution to Android, Windows and macOS
 
 -   As we are in a web context I will only take a short look at
     proprietary platform’s distribution mechanism
@@ -443,7 +466,7 @@ In Comparison: Distribution to Android, Windows and macOS
     -   Almost all apps implement their own update systems which
         replaces the app itself with the update
 -   macOS
-    -   DMG images or .pkg installers are used
+    -   DMG images or `.pkg` installers are used
     -   No concept of source or binary packages, no reproducibility -
         most software is fully proprietary and violates the user’s
         rights
@@ -455,34 +478,34 @@ In Comparison: Distribution to Android, Windows and macOS
     -   Most apps implement their own update systems which replaces the
         app itself with the update
 
-Distribution to Kubernetes/the Cloud
+### Distribution to Kubernetes/the Cloud
 
 -   Docker
 -   Kubernetes
 -   Helm
 -   Skaffold
 
-Distribution to WebAssembly
+### Distribution to WebAssembly
 
 -   WASM-Binary
--   WASI/wasm_exec equivalents
+-   WASI/wasm\_exec equivalents
 
-Pipelines
+### Pipelines
 
 -   bagop & bagccgop
     -   Tools to build for a lot of platforms
     -   Examples in Go, but these kind of tools exist for almost all
         programming languages
     -   Cloud environments and Kubernetes clusters are heterogeneous:
-        They can have many different CPU architectures (x86_64, arm64,
+        They can have many different CPU architectures (x86\_64, arm64,
         riscv64, ppc64 etc.)
     -   Portability is the key factor; your apps should not assume their
         target platforms and use standard build systems, which makes
         this much easier
     -   bagop and bagccgop try to build for all possible targets
-        (i.e. Linux on riscv64, FreeBSD on x86_64 etc.) by default and
+        (i.e. Linux on riscv64, FreeBSD on x86\_64 etc.) by default and
         then allows you to disable platforms which one can’t compile for
-    -   bagop works for pure Go, is fast and builds for ~40 targets by
+    -   bagop works for pure Go, is fast and builds for \~40 targets by
         default
     -   Demo: Build a Hello World Go app with bagop
     -   C libraries further complicate the situation: These require
@@ -490,16 +513,16 @@ Pipelines
         which means that they also require related dependencies at
         compile time for the specific target architecture and operating
         system, even if static linking is used
-    -   The solution is to either use tweaked chroots and a
-        cross-compiler (fast but tricky to set up) or binfmt and
-        qemu-user-static (slow but easy to set up)
+    -   The solution is to either use tweaked `chroot`s and a
+        cross-compiler (fast but tricky to set up) or `binfmt` and
+        `qemu-user-static` (slow but easy to set up)
     -   bagccgop is an automated way to use the first solution
     -   Can build for all Debian-supported platforms (including
         “esoteric” ones like 32-bit PowerPC)
     -   Can build static binaries with CGo thanks to GCCGo
     -   Allows the use of pretty much any C library with
         “cross-compilation by default” (OpenSSL, SDL2, Vulkan etc.)
-    -   Demo: Build a Hello World CGo app (calls printf) with bagccgop
+    -   Demo: Build a Hello World CGo app (calls `printf`) with bagccgop
         and run it on the PowerBook
     -   Using a tool like this makes sure that your app is actually
         portable and notifies you if dependencies are introduced which
@@ -528,25 +551,25 @@ Pipelines
         written in i.e. JavaScript
     -   Is configured using YAML
     -   Can use GitHub’s hosted machines or self-hosted nodes
-    -   on: Describes the triggers for the build system
-    -   jobs: Describes the commands to run and actions to execute for a
-        build configuration
-    -   strategy: Describes a matrix of build configurations that can be
-        executed in parallel (i.e. different binaries for the project,
-        different build commands)
+    -   **on**: Describes the triggers for the build system
+    -   **jobs**: Describes the commands to run and actions to execute
+        for a build configuration
+    -   **strategy**: Describes a matrix of build configurations that
+        can be executed in parallel (i.e. different binaries for the
+        project, different build commands)
     -   Pre-written actions can be very useful as a low-maintenance way
         to add complex functionality:
-        -   actions/checkout: git clones the source code of the branch
-            on which the event has been triggered
-        -   docker/setup-qemu-action: Installs QEMU, which allows the
+        -   `actions/checkout`: `git clone`s the source code of the
+            branch on which the event has been triggered
+        -   `docker/setup-qemu-action`: Installs QEMU, which allows the
             pipeline to run binaries for different target architectures
-        -   docker/setup-buildx-action: Installs buildx, the
+        -   `docker/setup-buildx-action`: Installs `buildx`, the
             next-generation build command for Docker with better support
             for multiple architectures
-        -   actions/upload-artifact and actions/download-artifact:
+        -   `actions/upload-artifact` and `actions/download-artifact`:
             Upload/download an artifact to the current run’s cache
             (i.e. to exchange it between jobs)
-        -   marvinpinto/action-automatic-releases: Create as a GitHub
+        -   `marvinpinto/action-automatic-releases`: Create as a GitHub
             releases and uploads assets; see the next section
 -   Semantic Versioning and Semantic Release
     -   Defines a formalized versioning scheme
@@ -560,14 +583,14 @@ Pipelines
         also those consuming it (i.e. distributions like Debian or
         projects which depend on external libraries)
     -   Semantic Release is a tool to make using it easier
-        -   1: git tag (i.e. git tag v0.1.0)
+        -   1: `git tag` (i.e. `git tag v0.1.0`)
         -   2: Push
         -   Semantic Release will create a GitHub release, corresponding
             changelog and upload/publish release assets (i.e. source
             code or binaries)
         -   Demo: Release example software using it
 
-Operation
+## Operation
 
 -   Sentry
 -   OpenTelemetry

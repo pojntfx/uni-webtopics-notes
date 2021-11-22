@@ -1,3 +1,21 @@
+commit 023c5d07002d2993b38f75e0a602340816bab022
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Tue Nov 23 00:52:46 2021 +0100
+
+    fix: Don't try to nest numbered lists
+
+commit ad3a0bd8d0442c18fb370a3d264b711d6c30318d
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Tue Nov 23 00:26:14 2021 +0100
+
+    feat: Use Deliverance
+
+commit 6aeb34fffb35ec941b33865025339e1f16e38c87
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Thu Nov 11 10:23:59 2021 +0100
+
+    feat: Add section on GitHub actions
+
 commit c0cf3cad58a5078f9546c7d02479bef3cc020b56
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 09:34:53 2021 +0100
