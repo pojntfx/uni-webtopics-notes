@@ -48,7 +48,7 @@ Overview
     -   Development
     -   Distribution (I will focus on this today)
     -   Operation
--   What is “cloud native”?
+-   What is “cloud native?”
 -   Why are “traditional” distribution methods still relevant?
 
 Development
@@ -80,7 +80,7 @@ Development
     prevent supply chain attacks and increase reproducibility
 
 -   Imagine: You find a Free Software project, and all you have to do in
-    order to contribute is press “.”!
+    order to contribute is press “.”
 
 -   Onboarding new developers becomes much easier
 
