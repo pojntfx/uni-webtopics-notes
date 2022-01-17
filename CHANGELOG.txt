@@ -1,3 +1,9 @@
+commit 40634f6d40eb02445681c690e1e098d60ab33cfd
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Mon Jan 17 23:56:38 2022 +0100
+
+    refactor: Add adjustments for presentation
+
 commit 023c5d07002d2993b38f75e0a602340816bab022
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Nov 23 00:52:46 2021 +0100

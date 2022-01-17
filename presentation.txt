@@ -13,7 +13,8 @@ Felicitas Pojtinger
     -   4.3 Distribution to RedHat Enterprise Linux
     -   4.4 Distribution to Debian GNU/Linux
     -   4.5 Distribution to Linux (universal)
-    -   4.6 In Comparison: Distribution to Android, Windows and macOS
+    -   4.6 In Comparison: Comparison to Distribution with Android,
+        Windows and macOS
     -   4.7 Distribution to Kubernetes/the Cloud
     -   4.8 Distribution to WebAssembly
     -   4.9 Pipelines
@@ -53,12 +54,11 @@ Overview
 
 Development
 
--   DevOps: Also includes development!
+-   DevOps also includes development!
 
--   Modern development should not be bound to any client attributes
-
--   It should not matter if the client is a RISC-V Linux machine, a
-    locked-down Windows workstation or an Android phone
+-   Modern development should not be bound to any client attributes (it
+    should not matter if the client is a RISC-V Linux machine, a
+    locked-down Windows workstation or an Android phone)
 
 -   Development should be possible from any platform, for any platform
 
@@ -113,7 +113,7 @@ Development
 -   Theia is an example of an alternative implementation of VSCode’s
     API, which serves as a vendor-neutral implementation of VSCode
 
--   Cloud-Native IDEs can either be self-hosted or public SaaS, so lets
+-   Cloud-Native IDEs can either be self-hosted or public SaaS, so let’s
     take a look at some of them!
 
 -   GitPod: Live demo
@@ -131,7 +131,7 @@ Development
     Arduinos)
 
     -   Forward USB over IP
-    -   Formward DBus over IP for BlueZ
+    -   Forward DBus over IP for BlueZ
     -   Use SSH tunnels
 
 -   Apps which require a Wayland compositor/a screen (i.e. desktop Linux
@@ -172,7 +172,7 @@ Basic Distribution Principles
             a Debian 10 host due to the different versions of the GNU C
             library used. This does however also have a few big
             advantages, which apply especially to Linux distributions.
-        -   Demo: Creating a statically-linked (CGO_ENABLE=1) Go binary,
+        -   Demo: Create a statically-linked (CGO_ENABLE=1) Go binary,
             running ldd on it and running it in two containers (Debian
             and Alpine Linux), then retrying it with a statically-linked
             (CGO_ENABLE=0) binary
@@ -195,20 +195,24 @@ Basic Distribution Principles
         matches.
     -   Demo: Creating a signed binary, verifying it (hydrapp),
         tampering with it (adding bytes to end), and re-verifying it
-    -   Show gridge (https://pojntfx.github.io/gridge/)
+        using keygaen
 
 -   Portability
 
     -   Applications should be portable
+
     -   Portability can mean different things: Portability as in amount
         of platforms it can be compiled for, platforms it can be
         compiled on, platforms it can run on in compiled form,
         constraints the compiled form needs
+
     -   There are many reasons to make apps portable, both from a
         developer’s and a user’s point of view
+
     -   Apps can be tuned for portability with a few simple steps (see
         in part
         https://drewdevault.com/2021/09/27/Let-distros-do-their-job.html)
+
         -   Distribution as a simple tarball
         -   Shipping static binaries
         -   Use standard build systems and methodologies (Go, Cargo,
@@ -230,9 +234,11 @@ Basic Distribution Principles
             portability (i.e. cryptography libraries often require
             hardware-accelerated CPU support, which is unavailable in
             low-end CPUs)
+
     -   Portability is however often overlooked; product owners mostly
         see no value in it, unless things break. It is up to the
         developer to take initiative
+
     -   Demo: Compiling the Links browser from source with Autotools
 
 -   Reproducibility
@@ -418,7 +424,7 @@ Distribution to Linux (universal)
 -   Why is Flatpak relevant in a web context?: Similar to Docker, which
     I will show later
 
-In Comparison: Distribution to Android, Windows and macOS
+In Comparison: Comparison to Distribution with Android, Windows and macOS
 
 -   As we are in a web context I will only take a short look at
     proprietary platform’s distribution mechanism
@@ -565,7 +571,7 @@ Pipelines
         -   Semantic Release will create a GitHub release, corresponding
             changelog and upload/publish release assets (i.e. source
             code or binaries)
-        -   Demo: Release example software using it
+        -   Demo: Release example software using GitHub Actions it
 
 Operation
 

@@ -173,7 +173,7 @@
 <li><a href="#distribution-to-redhat-enterprise-linux"><span class="toc-section-number">1.4.3</span> Distribution to RedHat Enterprise Linux</a></li>
 <li><a href="#distribution-to-debian-gnulinux"><span class="toc-section-number">1.4.4</span> Distribution to Debian GNU/Linux</a></li>
 <li><a href="#distribution-to-linux-universal"><span class="toc-section-number">1.4.5</span> Distribution to Linux (universal)</a></li>
-<li><a href="#in-comparison-distribution-to-android-windows-and-macos"><span class="toc-section-number">1.4.6</span> In Comparison: Distribution to Android, Windows and macOS</a></li>
+<li><a href="#in-comparison-comparison-to-distribution-with-android-windows-and-macos"><span class="toc-section-number">1.4.6</span> In Comparison: Comparison to Distribution with Android, Windows and macOS</a></li>
 <li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">1.4.7</span> Distribution to Kubernetes/the Cloud</a></li>
 <li><a href="#distribution-to-webassembly"><span class="toc-section-number">1.4.8</span> Distribution to WebAssembly</a></li>
 <li><a href="#pipelines"><span class="toc-section-number">1.4.9</span> Pipelines</a></li>
@@ -218,9 +218,8 @@
 <section id="development" data-number="0.3">
 <h2 data-number="1.3"><span class="header-section-number">1.3</span> Development</h2>
 <ul>
-<li><p>DevOps: Also includes development!</p></li>
-<li><p>Modern development should not be bound to any client attributes</p></li>
-<li><p>It should not matter if the client is a RISC-V Linux machine, a locked-down Windows workstation or an Android phone</p></li>
+<li><p>DevOps also includes development!</p></li>
+<li><p>Modern development should not be bound to any client attributes (it should not matter if the client is a RISC-V Linux machine, a locked-down Windows workstation or an Android phone)</p></li>
 <li><p>Development should be possible from any platform, for any platform</p></li>
 <li><p>The only truly cross-platform application framework is the web</p></li>
 <li><p>PWAs make it possible for web apps to have all the features native apps have</p></li>
@@ -239,7 +238,7 @@
 <li><p>Most are based on VSCode (or, to be more precise, VSCode’s API specification)</p></li>
 <li><p>VSCode (or its libre forks, like VSCodium) is already based on web technologies (Electron), so adapting it to run in the browser is possible</p></li>
 <li><p>Theia is an example of an alternative implementation of VSCode’s API, which serves as a vendor-neutral implementation of VSCode</p></li>
-<li><p>Cloud-Native IDEs can either be self-hosted or public SaaS, so lets take a look at some of them!</p></li>
+<li><p>Cloud-Native IDEs can either be self-hosted or public SaaS, so let’s take a look at some of them!</p></li>
 <li><p>GitPod: Live demo</p></li>
 <li><p>Codespaces: Live demo</p></li>
 <li><p>pojde: Live demo</p></li>
@@ -247,7 +246,7 @@
 <li><p>Apps which require Android devices as a target, require a programmer, USB or Bluetooth and are not using Web Bluetooth/Web Serial (i.e. Android apps, smart home projects, IoT devices, Arduinos)</p>
 <ul>
 <li>Forward USB over IP</li>
-<li>Formward DBus over IP for BlueZ</li>
+<li>Forward DBus over IP for BlueZ</li>
 <li>Use SSH tunnels</li>
 </ul></li>
 <li><p>Apps which require a Wayland compositor/a screen (i.e. desktop Linux apps, GTK/QT apps)</p>
@@ -275,7 +274,7 @@
 <ul>
 <li>Statically linked: Since the Linux ABIs are stable, one can depend on them not changing - this allows not linking against any specific C library and makes the resulting binary portable across distributions. It also allows including all external dependencies into the binary, effectively making it a “single-file” distribution method</li>
 <li>Dynamically linked: Thanks to <code>dlopen</code> and package management, dynamic linking can also be used. Most of the time (especially on non-Linux OSes), at least the C library and external dependencies (i.e. <code>SQLite</code>) thus need to be available in <code>LD_LIBRARY_PATH</code> at runtime; if they are not, the application can’t continue. This makes the binaries non-portable across distributions; for example, if a binary is built on a Debian 11 host, it most probably won’t run on a Debian 10 host due to the different versions of the GNU C library used. This does however also have a few big advantages, which apply especially to Linux distributions.</li>
-<li>Demo: Creating a statically-linked (<code>CGO_ENABLE=1</code>) Go binary, running <code>ldd</code> on it and running it in two containers (Debian and Alpine Linux), then retrying it with a statically-linked (<code>CGO_ENABLE=0</code>) binary</li>
+<li>Demo: Create a statically-linked (<code>CGO_ENABLE=1</code>) Go binary, running <code>ldd</code> on it and running it in two containers (Debian and Alpine Linux), then retrying it with a statically-linked (<code>CGO_ENABLE=0</code>) binary</li>
 </ul></li>
 </ul></li>
 <li><p>GPG signing</p>
@@ -284,15 +283,14 @@
 <li>Signatures allow the user to verify the author of a piece of software</li>
 <li>To increase security, only signed software should ever be installed - as we’ll see later, this is already the case on Linux distributions and their repositories</li>
 <li>For example: If author Alice publishes an app (lets call it “scihab”) and user Bob wishes to be able to verify that the binary has actually been produced by Alice, he can verify that the binary has actually been produced by Alice and hasn’t for example been infected with malware by a malicious actor, in which the case the signature (usually a <code>.asc</code> file) no longer matches.</li>
-<li>Demo: Creating a signed binary, verifying it (hydrapp), tampering with it (adding bytes to end), and re-verifying it</li>
-<li>Show gridge (https://pojntfx.github.io/gridge/)</li>
+<li>Demo: Creating a signed binary, verifying it (hydrapp), tampering with it (adding bytes to end), and re-verifying it using keygaen</li>
 </ul></li>
 <li><p>Portability</p>
 <ul>
-<li>Applications should be portable</li>
-<li>Portability can mean different things: Portability as in amount of platforms it can be compiled for, platforms it can be compiled on, platforms it can run on in compiled form, constraints the compiled form needs</li>
-<li>There are many reasons to make apps portable, both from a developer’s and a user’s point of view</li>
-<li>Apps can be tuned for portability with a few simple steps (see in part https://drewdevault.com/2021/09/27/Let-distros-do-their-job.html)
+<li><p>Applications should be portable</p></li>
+<li><p>Portability can mean different things: Portability as in amount of platforms it can be compiled for, platforms it can be compiled on, platforms it can run on in compiled form, constraints the compiled form needs</p></li>
+<li><p>There are many reasons to make apps portable, both from a developer’s and a user’s point of view</p></li>
+<li><p>Apps can be tuned for portability with a few simple steps (see in part https://drewdevault.com/2021/09/27/Let-distros-do-their-job.html)</p>
 <ul>
 <li>Distribution as a simple tarball</li>
 <li>Shipping static binaries</li>
@@ -300,8 +298,8 @@
 <li>Inclusion of good release notes makes it much easier from a distro’s or developer’s perspective to be aware of changes that might break the build system or new runtime or target platform requirements</li>
 <li>Use dependencies carefully (i.e. use them to reduce maintenance overhead and security issues by having external tests on say usecases like IP or Email parsing); too many external dependencies and especially dependencies without a secure external supply chain lead to security issues in the app itself, which make it harder to build and decrease portability (i.e. cryptography libraries often require hardware-accelerated CPU support, which is unavailable in low-end CPUs)</li>
 </ul></li>
-<li>Portability is however often overlooked; product owners mostly see no value in it, unless things break. It is up to the developer to take initiative</li>
-<li>Demo: Compiling the Links browser from source with Autotools</li>
+<li><p>Portability is however often overlooked; product owners mostly see no value in it, unless things break. It is up to the developer to take initiative</p></li>
+<li><p>Demo: Compiling the Links browser from source with Autotools</p></li>
 </ul></li>
 <li><p>Reproducibility</p>
 <ul>
@@ -443,8 +441,8 @@
 <li>Why is Flatpak relevant in a web context?: Similar to Docker, which I will show later</li>
 </ul>
 </section>
-<section id="in-comparison-distribution-to-android-windows-and-macos" data-number="0.4.6">
-<h3 data-number="1.4.6"><span class="header-section-number">1.4.6</span> In Comparison: Distribution to Android, Windows and macOS</h3>
+<section id="in-comparison-comparison-to-distribution-with-android-windows-and-macos" data-number="0.4.6">
+<h3 data-number="1.4.6"><span class="header-section-number">1.4.6</span> In Comparison: Comparison to Distribution with Android, Windows and macOS</h3>
 <ul>
 <li>As we are in a web context I will only take a short look at proprietary platform’s distribution mechanism</li>
 <li>The intention here is to show why these platforms are not viable for secure usage</li>
@@ -555,7 +553,7 @@
 <li>1: <code>git tag</code> (i.e. <code>git tag v0.1.0</code>)</li>
 <li>2: Push</li>
 <li>Semantic Release will create a GitHub release, corresponding changelog and upload/publish release assets (i.e. source code or binaries)</li>
-<li>Demo: Release example software using it</li>
+<li>Demo: Release example software using GitHub Actions it</li>
 </ul></li>
 </ul></li>
 </ul>
