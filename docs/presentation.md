@@ -42,17 +42,19 @@ SPDX-License-Identifier: AGPL-3.0
 
 ## Development
 
-- DevOps: Also includes development!
-- Modern development should not be bound to any client attributes
-- It should not matter if the client is a RISC-V Linux machine, a locked-down Windows workstation or an Android phone
+- DevOps also includes development!
+- Modern development should not be bound to any client attributes (it should not matter if the client is a RISC-V Linux machine, a locked-down Windows workstation or an Android phone)
 - Development should be possible from any platform, for any platform
+
 - The only truly cross-platform application framework is the web
 - PWAs make it possible for web apps to have all the features native apps have
 - PWAs work offline by default
 - Why not make our development environments PWAs?
+
 - Virtual machines and user-friendly hypervisors and containers make it possible to run the editor's backend locally too
 - Source code can for example never leave the company's system
 - Development environments can be quickly updated and tightened to prevent supply chain attacks and increase reproducibility
+
 - Imagine: You find a Free Software project, and all you have to do in order to contribute is press "."!
 - Onboarding new developers becomes much easier
 - Independence of client choice enables the use of much cheaper or constrained client devices
@@ -64,7 +66,7 @@ SPDX-License-Identifier: AGPL-3.0
 - Most are based on VSCode (or, to be more precise, VSCode's API specification)
 - VSCode (or its libre forks, like VSCodium) is already based on web technologies (Electron), so adapting it to run in the browser is possible
 - Theia is an example of an alternative implementation of VSCode's API, which serves as a vendor-neutral implementation of VSCode
-- Cloud-Native IDEs can either be self-hosted or public SaaS, so lets take a look at some of them!
+- Cloud-Native IDEs can either be self-hosted or public SaaS, so let's take a look at some of them!
 
 - GitPod: Live demo
 - Codespaces: Live demo
@@ -73,7 +75,7 @@ SPDX-License-Identifier: AGPL-3.0
 - But what if we want to develop things that one can't normally develop remotely?
 - Apps which require Android devices as a target, require a programmer, USB or Bluetooth and are not using Web Bluetooth/Web Serial (i.e. Android apps, smart home projects, IoT devices, Arduinos)
   - Forward USB over IP
-  - Formward DBus over IP for BlueZ
+  - Forward DBus over IP for BlueZ
   - Use SSH tunnels
 - Apps which require a Wayland compositor/a screen (i.e. desktop Linux apps, GTK/QT apps)
   - Waypipe
@@ -92,19 +94,19 @@ SPDX-License-Identifier: AGPL-3.0
   - Binaries can be statically or dynamically linked
     - Statically linked: Since the Linux ABIs are stable, one can depend on them not changing - this allows not linking against any specific C library and makes the resulting binary portable across distributions. It also allows including all external dependencies into the binary, effectively making it a "single-file" distribution method
     - Dynamically linked: Thanks to `dlopen` and package management, dynamic linking can also be used. Most of the time (especially on non-Linux OSes), at least the C library and external dependencies (i.e. `SQLite`) thus need to be available in `LD_LIBRARY_PATH` at runtime; if they are not, the application can't continue. This makes the binaries non-portable across distributions; for example, if a binary is built on a Debian 11 host, it most probably won't run on a Debian 10 host due to the different versions of the GNU C library used. This does however also have a few big advantages, which apply especially to Linux distributions.
-    - Demo: Creating a statically-linked (`CGO_ENABLE=1`) Go binary, running `ldd` on it and running it in two containers (Debian and Alpine Linux), then retrying it with a statically-linked (`CGO_ENABLE=0`) binary
+    - Demo: Create a statically-linked (`CGO_ENABLE=1`) Go binary, running `ldd` on it and running it in two containers (Debian and Alpine Linux), then retrying it with a statically-linked (`CGO_ENABLE=0`) binary
 - GPG signing
   - GPG: GNU privacy guard; a Free Software implementing GPG (RFC 4880)
   - Signatures allow the user to verify the author of a piece of software
   - To increase security, only signed software should ever be installed - as we'll see later, this is already the case on Linux distributions and their repositories
   - For example: If author Alice publishes an app (lets call it "scihab") and user Bob wishes to be able to verify that the binary has actually been produced by Alice, he can verify that the binary has actually been produced by Alice and hasn't for example been infected with malware by a malicious actor, in which the case the signature (usually a `.asc` file) no longer matches.
-  - Demo: Creating a signed binary, verifying it (hydrapp), tampering with it (adding bytes to end), and re-verifying it
-  - Show gridge (https://pojntfx.github.io/gridge/)
+  - Demo: Creating a signed binary, verifying it (hydrapp), tampering with it (adding bytes to end), and re-verifying it using keygaen
 - Portability
 
   - Applications should be portable
   - Portability can mean different things: Portability as in amount of platforms it can be compiled for, platforms it can be compiled on, platforms it can run on in compiled form, constraints the compiled form needs
   - There are many reasons to make apps portable, both from a developer's and a user's point of view
+
   - Apps can be tuned for portability with a few simple steps (see in part https://drewdevault.com/2021/09/27/Let-distros-do-their-job.html)
     - Distribution as a simple tarball
     - Shipping static binaries
@@ -229,7 +231,7 @@ SPDX-License-Identifier: AGPL-3.0
 - Demo: Creating and building a Flatpak with GNOME
 - Why is Flatpak relevant in a web context?: Similar to Docker, which I will show later
 
-### In Comparison: Distribution to Android, Windows and macOS
+### In Comparison: Comparison to Distribution with Android, Windows and macOS
 
 - As we are in a web context I will only take a short look at proprietary platform's distribution mechanism
 - The intention here is to show why these platforms are not viable for secure usage
@@ -316,7 +318,7 @@ SPDX-License-Identifier: AGPL-3.0
     - 1: `git tag` (i.e. `git tag v0.1.0`)
     - 2: Push
     - Semantic Release will create a GitHub release, corresponding changelog and upload/publish release assets (i.e. source code or binaries)
-    - Demo: Release example software using it
+    - Demo: Release example software using GitHub Actions it
 
 ## Operation
 
