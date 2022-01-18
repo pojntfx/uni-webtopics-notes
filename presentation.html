@@ -175,10 +175,8 @@
 <li><a href="#distribution-to-linux-universal"><span class="toc-section-number">1.4.5</span> Distribution to Linux (universal)</a></li>
 <li><a href="#in-comparison-comparison-to-distribution-with-android-windows-and-macos"><span class="toc-section-number">1.4.6</span> In Comparison: Comparison to Distribution with Android, Windows and macOS</a></li>
 <li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">1.4.7</span> Distribution to Kubernetes/the Cloud</a></li>
-<li><a href="#distribution-to-webassembly"><span class="toc-section-number">1.4.8</span> Distribution to WebAssembly</a></li>
-<li><a href="#pipelines"><span class="toc-section-number">1.4.9</span> Pipelines</a></li>
+<li><a href="#pipelines"><span class="toc-section-number">1.4.8</span> Pipelines</a></li>
 </ul></li>
-<li><a href="#operation"><span class="toc-section-number">1.5</span> Operation</a></li>
 </ul>
 </nav>
 <section id="introduction" data-number="0.1">
@@ -475,21 +473,104 @@
 <section id="distribution-to-kubernetesthe-cloud" data-number="0.4.7">
 <h3 data-number="1.4.7"><span class="header-section-number">1.4.7</span> Distribution to Kubernetes/the Cloud</h3>
 <ul>
-<li>Docker</li>
-<li>Kubernetes</li>
-<li>Helm</li>
-<li>Skaffold</li>
-</ul>
-</section>
-<section id="distribution-to-webassembly" data-number="0.4.8">
-<h3 data-number="1.4.8"><span class="header-section-number">1.4.8</span> Distribution to WebAssembly</h3>
+<li><p>Native</p>
 <ul>
-<li>WASM-Binary</li>
-<li>WASI/wasm_exec equivalents</li>
+<li><code>scp</code> to server</li>
+<li>Configure systemd Unit</li>
+<li>Get status and logs using <code>systemctl</code> and <code>journalctl</code></li>
+</ul></li>
+<li><p>Docker</p>
+<ul>
+<li>Like VMs, but the host kernel is shared (isolation taking place by using CGroups)</li>
+<li>“Apps for servers”</li>
+<li>Workflow
+<ul>
+<li>Define Dockerfile</li>
+<li>Create OCI image by using <code>docker build</code></li>
+<li>Push using <code>docker tag</code> and <code>docker push</code></li>
+<li>Pull using <code>docker pull</code></li>
+<li>Start using <code>docker run</code></li>
+<li>Get logs using <code>docker logs</code></li>
+</ul></li>
+</ul></li>
+<li><p>Kubernetes</p>
+<ul>
+<li>A declarative orchestration system for containerized applications</li>
+<li>Objects
+<ul>
+<li>Pods: One or multiple containers running an app</li>
+<li>Deployments: Configuration of how pods will be created</li>
+<li>Service: Makes an app (i.e. a gRPC API server) reachable from other pods within the cluster</li>
+<li>Ingress: Makes a service reachable from the outside</li>
+<li>Autoscaler: Allows vertical or horizontally scaling a deployment</li>
+</ul></li>
+<li>Internal Components
+<ul>
+<li>CRI: Container runtime interface, manages containers (historically Docker)</li>
+<li>CNI: Container network interface, manages networking between containers (i.e. Flannel)</li>
+<li>CSI: Container storage interface, manages volumes and attaches them to containers (i.e. OpenEBS)</li>
+</ul></li>
+<li>Scheduler: Efficiently scales the pods across the cluster</li>
+<li>Workflow
+<ul>
+<li>Declarative configuration using JSON or YAML</li>
+<li>Define YAML</li>
+<li>Setup Kubeconfig</li>
+<li>Deploy objects to the cluster using <code>kubectl apply</code></li>
+<li>Get objects using <code>kubectl get</code></li>
+<li>Delete objects using <code>kubectl delete</code></li>
+<li>TUIs and GUIs like <code>k9s</code> and Lens can make management easier</li>
+</ul></li>
+</ul></li>
+<li><p>Helm</p>
+<ul>
+<li>“APT/DNF for Kubernetes”</li>
+<li>Workflow
+<ul>
+<li>Define k8s YAML</li>
+<li>Add Go template syntax</li>
+<li>Define stack (YAML + Go templates)</li>
+<li>Define values (template values)</li>
+<li>Define chart metadata (version etc.)</li>
+<li><code>helm package</code></li>
+<li>Upload <code>.tar.gz</code> to repo</li>
+<li><code>helm repo add</code></li>
+<li><code>helm install repo/chart</code></li>
+<li>Take inventory using <code>helm list</code></li>
+<li>Delete using <code>helm delete</code></li>
+<li>TUIs and GUIs like <code>k9s</code> (which also supports Helm) and Kubeapps can make management easier</li>
+</ul></li>
+</ul></li>
+<li><p>Skaffold</p>
+<ul>
+<li>“Skaffold handles the workflow for building, pushing and deploying your application, allowing you to focus on what matters most: writing code.”</li>
+<li>Workflow
+<ul>
+<li>Invoke <code>skaffold</code> (dev or production)</li>
+<li>Builds image using Docker</li>
+<li>Build Helm chart</li>
+<li>Deploys Helm chart to Kubernetes</li>
+<li>Repeats when source files change (in development)</li>
+</ul></li>
+<li>Features
+<ul>
+<li>No need to configure development clients</li>
+<li>Can use ressources of the cluster</li>
+<li>Offline development is possible by using a local cluster</li>
+<li>Debugging is universal across languages</li>
+</ul></li>
+<li>Configuration
+<ul>
+<li>Define Skaffold YAML</li>
+<li>Develop with <code>skaffold dev</code></li>
+<li>Deploy using <code>skaffold run</code></li>
+<li>Delete using <code>skaffold delete</code></li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
-<section id="pipelines" data-number="0.4.9">
-<h3 data-number="1.4.9"><span class="header-section-number">1.4.9</span> Pipelines</h3>
+<section id="pipelines" data-number="0.4.8">
+<h3 data-number="1.4.8"><span class="header-section-number">1.4.8</span> Pipelines</h3>
 <ul>
 <li>bagop &amp; bagccgop
 <ul>
@@ -558,15 +639,6 @@
 </ul></li>
 </ul>
 </section>
-</section>
-<section id="operation" data-number="0.5">
-<h2 data-number="1.5"><span class="header-section-number">1.5</span> Operation</h2>
-<ul>
-<li>Sentry</li>
-<li>OpenTelemetry</li>
-<li>Prometheus</li>
-<li>Grafana</li>
-</ul>
 </section>
 </body>
 </html>
