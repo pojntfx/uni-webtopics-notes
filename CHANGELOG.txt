@@ -1,3 +1,9 @@
+commit bd9fec818a4c1a59563353a6f42f982bebe4206b
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Tue Jan 18 18:05:53 2022 +0100
+
+    feat: Add notes on Cloud-Native deployments from prior work
+
 commit 40634f6d40eb02445681c690e1e098d60ab33cfd
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Mon Jan 17 23:56:38 2022 +0100
