@@ -256,15 +256,78 @@ SPDX-License-Identifier: AGPL-3.0
 
 ### Distribution to Kubernetes/the Cloud
 
+- Native
+  - `scp` to server
+  - Configure systemd Unit
+  - Get status and logs using `systemctl` and `journalctl`
 - Docker
+  - Like VMs, but the host kernel is shared (isolation taking place by using CGroups)
+  - "Apps for servers"
+  - Workflow
+    - Define Dockerfile
+    - Create OCI image by using `docker build`
+    - Push using `docker tag` and `docker push`
+    - Pull using `docker pull`
+    - Start using `docker run`
+    - Get logs using `docker logs`
 - Kubernetes
+
+  - A declarative orchestration system for containerized applications
+  - Objects
+    - Pods: One or multiple containers running an app
+    - Deployments: Configuration of how pods will be created
+    - Service: Makes an app (i.e. a gRPC API server) reachable from other pods within the cluster
+    - Ingress: Makes a service reachable from the outside
+    - Autoscaler: Allows vertical or horizontally scaling a deployment
+  - Internal Components
+    - CRI: Container runtime interface, manages containers (historically Docker)
+    - CNI: Container network interface, manages networking between containers (i.e. Flannel)
+    - CSI: Container storage interface, manages volumes and attaches them to containers (i.e. OpenEBS)
+  - Scheduler: Efficiently scales the pods across the cluster
+  - Workflow
+    - Declarative configuration using JSON or YAML
+    - Define YAML
+    - Setup Kubeconfig
+    - Deploy objects to the cluster using `kubectl apply`
+    - Get objects using `kubectl get`
+    - Delete objects using `kubectl delete`
+    - TUIs and GUIs like `k9s` and Lens can make management easier
+
 - Helm
+
+  - "APT/DNF for Kubernetes"
+  - Workflow
+    - Define k8s YAML
+    - Add Go template syntax
+    - Define stack (YAML + Go templates)
+    - Define values (template values)
+    - Define chart metadata (version etc.)
+    - `helm package`
+    - Upload `.tar.gz` to repo
+    - `helm repo add`
+    - `helm install repo/chart`
+    - Take inventory using `helm list`
+    - Delete using `helm delete`
+    - TUIs and GUIs like `k9s` (which also supports Helm) and Kubeapps can make management easier
+
 - Skaffold
-
-### Distribution to WebAssembly
-
-- WASM-Binary
-- WASI/wasm_exec equivalents
+  - "Skaffold handles the workflow for building, pushing and deploying your application, allowing you to focus on what matters most: writing code."
+  - Workflow
+    - Invoke `skaffold` (dev or production)
+    - Builds image using Docker
+    - Build Helm chart
+    - Deploys Helm chart to Kubernetes
+    - Repeats when source files change (in development)
+  - Features
+    - No need to configure development clients
+    - Can use ressources of the cluster
+    - Offline development is possible by using a local cluster
+    - Debugging is universal across languages
+  - Configuration
+    - Define Skaffold YAML
+    - Develop with `skaffold dev`
+    - Deploy using `skaffold run`
+    - Delete using `skaffold delete`
 
 ### Pipelines
 
@@ -319,10 +382,3 @@ SPDX-License-Identifier: AGPL-3.0
     - 2: Push
     - Semantic Release will create a GitHub release, corresponding changelog and upload/publish release assets (i.e. source code or binaries)
     - Demo: Release example software using GitHub Actions it
-
-## Operation
-
-- Sentry
-- OpenTelemetry
-- Prometheus
-- Grafana
