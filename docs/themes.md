@@ -1,5 +1,5 @@
 ---
-author: [Felix Pojtinger]
+author: [Felicitas Pojtinger]
 date: "2021-11-19"
 subject: "Web Topics Notes: Notes on Cloud Native Development"
 keywords: [docker, linux, kubernetes, helm, skaffold]
@@ -25,7 +25,7 @@ If you like the study materials, a GitHub star is always appreciated :)
 
 ![AGPL-3.0 license badge](https://www.gnu.org/graphics/agplv3-155x51.png){ width=128px }
 
-Uni Web Topics Themes (c) 2021 Felix Pojtinger and contributors
+Uni Web Topics Themes (c) 2021 Felicitas Pojtinger and contributors
 
 SPDX-License-Identifier: AGPL-3.0
 \newpage
