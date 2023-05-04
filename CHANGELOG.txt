@@ -1,118 +1,124 @@
-commit bd9fec818a4c1a59563353a6f42f982bebe4206b
+commit b3abe5623af73af7a558b68248807e4d7a338658
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Fri May 5 01:00:57 2023 +0200
+
+    fix: Add content write permission for Deliverance CI/CD
+
+commit bc8733082f2e671a837cb542c6856b3efe798b66
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Jan 18 18:05:53 2022 +0100
 
     feat: Add notes on Cloud-Native deployments from prior work
 
-commit 40634f6d40eb02445681c690e1e098d60ab33cfd
+commit 9b89640a89d84a51a7a52d6f6940fead14792a75
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Mon Jan 17 23:56:38 2022 +0100
 
     refactor: Add adjustments for presentation
 
-commit 023c5d07002d2993b38f75e0a602340816bab022
+commit 60b3815c95228fa4bcb86bb4f2d9dfa25a25e5d6
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Nov 23 00:52:46 2021 +0100
 
     fix: Don't try to nest numbered lists
 
-commit ad3a0bd8d0442c18fb370a3d264b711d6c30318d
+commit b7a90b9530ddf6a84c378154939551d18bd061dc
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Nov 23 00:26:14 2021 +0100
 
     feat: Use Deliverance
 
-commit 6aeb34fffb35ec941b33865025339e1f16e38c87
+commit 31974b01a43b68904840b88dfcfc7add1bf1b2c4
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 10:23:59 2021 +0100
 
     feat: Add section on GitHub actions
 
-commit c0cf3cad58a5078f9546c7d02479bef3cc020b56
+commit 140833911a903a6d9922b99dddd23aec46d86e1f
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 09:34:53 2021 +0100
 
     feat: Add notes on proprietary distribution mechanisms, bagop/bagccgop and hydrun
 
-commit 80b2ad844fa9164d56b62ef9b4aa2527bd99e492
+commit e09f42bcc6cc3e62399ad1b7031a6e5441ad5d9f
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 08:52:24 2021 +0100
 
     feat: Add notes on Flatpak
 
-commit b9a55af0f664e31af82f75f80e0d931aa08f30d1
+commit 4dbf4ce68ddcfbd77e005cebffb27f31e81f7237
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 08:38:54 2021 +0100
 
     feat: Add Makefile to gitignore
 
-commit ce6fca8a70d39215737d9105a01ad6374085c6d1
+commit 1dd1a5c4cc916b47d89a2a11bd77424f4fc6b098
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 08:38:34 2021 +0100
 
     fix: Drop Makefile
 
-commit ff439c56545733cb680fab318305e52f0708bf03
+commit 2fdb19bcd9fe64a95f2ba91bca03917aa84b88bf
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Nov 11 08:37:39 2021 +0100
 
     build: Use new build system
 
-commit 315a30145490a72cda6164cddafbe6b520cac103
+commit 7ac6d605380552712344c75ef694a79b1af88c51
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 28 11:13:52 2021 +0200
 
     feat: Add basic intro to RHEL and Debian
 
-commit 53ea614bdc177d9b86f4ba75347af42eaca2a03f
+commit 4aedb0ba717b1fcd8e38907b5ef377676c023b74
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 28 10:37:03 2021 +0200
 
     feat: Add section on binary and source packages, metadata and systemd
 
-commit a88ea346bd0e7a99b475b1c7eeed05fc483345a2
+commit 445af26c51e0103d7183d7c0d25fe2b2beffbaba
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 21 10:22:51 2021 +0200
 
     feat: Add introduction package on packaging
 
-commit a51ce14d84e4c69c2434faaa571c45416a8ed35e
+commit 40f1351b3f21862ad81ddd9f151103c1c20dc597
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 21 09:14:03 2021 +0200
 
     docs: Add notes on binaries and portability
 
-commit 97667007866f3b26403a4bedb08c874a01203e5f
+commit 70689d535bf0cb4a53bfb01fa0e206c10297b7b3
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 14 11:00:09 2021 +0200
 
     feat: Add section on cloud IDEs
 
-commit 3375d250a337e4948b168a409622a18fd0191ff5
+commit 69d8ebd97054b4fa418fd7396ab4dc8f2f181c8b
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 14 10:21:42 2021 +0200
 
     feat: Add development introduction section
 
-commit 86f519e3555b51172950b4c4067a6fb90ce9f132
+commit 5d8d3798f501f0955aec3c60b4c97568a91b7cd0
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 14 09:20:12 2021 +0200
 
     build: Add GitHub action
 
-commit e2087f9568d85ca5463c68dde031aded6693b9d2
+commit 1fa72a7005d08063a3e9a5aec5fdf4a1988295ae
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 14 09:18:44 2021 +0200
 
     feat: Add build system
 
-commit 1bd4e736c105c5b75e93d9799ffe3e29d065eb3c
+commit d1a896a84bef2aa13ed6110bd7ffe196eca3f4dc
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 14 08:51:42 2021 +0200
 
     feat: Add basic theme list
 
-commit ea4e294303c231e5eed46199e0a645053047756b
+commit 3e82f5b5e3a553ede657c362c7720ffc0d771b77
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Thu Oct 14 08:25:56 2021 +0200
 

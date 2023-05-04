@@ -36,7 +36,8 @@ License
 
 [AGPL-3.0 license badge]
 
-Uni Web Topics Presentation (c) 2021 Felicitas Pojtinger and contributors
+Uni Web Topics Presentation (c) 2021 Felicitas Pojtinger and
+contributors
 
 SPDX-License-Identifier: AGPL-3.0
 
@@ -47,7 +48,7 @@ Overview
     -   Development
     -   Distribution (I will focus on this today)
     -   Operation
--   What is “cloud native?”
+-   What is “cloud native”?
 -   Why are “traditional” distribution methods still relevant?
 
 Development
@@ -78,7 +79,7 @@ Development
     prevent supply chain attacks and increase reproducibility
 
 -   Imagine: You find a Free Software project, and all you have to do in
-    order to contribute is press “.”
+    order to contribute is press “.”!
 
 -   Onboarding new developers becomes much easier
 
@@ -177,8 +178,8 @@ Basic Distribution Principles
 
 -   GPG signing
 
-    -   GPG: GNU privacy guard; a Free Software implementing GPG
-        (RFC 4880)
+    -   GPG: GNU privacy guard; a Free Software implementing GPG (RFC
+        4880)
     -   Signatures allow the user to verify the author of a piece of
         software
     -   To increase security, only signed software should ever be

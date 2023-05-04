@@ -24,7 +24,7 @@
       padding-top: 50px;
       padding-bottom: 50px;
       hyphens: auto;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
     }
@@ -32,6 +32,9 @@
       body {
         font-size: 0.9em;
         padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
       }
     }
     @media print {
@@ -95,6 +98,7 @@
     pre code {
       padding: 0;
       overflow: visible;
+      overflow-wrap: normal;
     }
     .sourceCode {
      background-color: transparent;
@@ -136,6 +140,12 @@
     #TOC li {
       list-style: none;
     }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
     #TOC a:not(:hover) {
       text-decoration: none;
     }
@@ -146,9 +156,6 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
   </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
@@ -159,48 +166,71 @@
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#introduction"><span class="toc-section-number">1.1</span> Introduction</a>
+<li><a href="#introduction"><span class="toc-section-number">1.1</span>
+Introduction</a>
 <ul>
 <li><a href="#contributing"><span class="toc-section-number">1.1.1</span> Contributing</a></li>
-<li><a href="#license"><span class="toc-section-number">1.1.2</span> License</a></li>
+<li><a href="#license"><span class="toc-section-number">1.1.2</span>
+License</a></li>
 </ul></li>
-<li><a href="#overview"><span class="toc-section-number">1.2</span> Overview</a></li>
-<li><a href="#development"><span class="toc-section-number">1.3</span> Development</a></li>
-<li><a href="#distribution"><span class="toc-section-number">1.4</span> Distribution</a>
+<li><a href="#overview"><span class="toc-section-number">1.2</span>
+Overview</a></li>
+<li><a href="#development"><span class="toc-section-number">1.3</span>
+Development</a></li>
+<li><a href="#distribution"><span class="toc-section-number">1.4</span>
+Distribution</a>
 <ul>
-<li><a href="#basic-distribution-principles"><span class="toc-section-number">1.4.1</span> Basic Distribution Principles</a></li>
+<li><a href="#basic-distribution-principles"><span class="toc-section-number">1.4.1</span> Basic Distribution
+Principles</a></li>
 <li><a href="#packaging-overview"><span class="toc-section-number">1.4.2</span> Packaging Overview</a></li>
-<li><a href="#distribution-to-redhat-enterprise-linux"><span class="toc-section-number">1.4.3</span> Distribution to RedHat Enterprise Linux</a></li>
-<li><a href="#distribution-to-debian-gnulinux"><span class="toc-section-number">1.4.4</span> Distribution to Debian GNU/Linux</a></li>
-<li><a href="#distribution-to-linux-universal"><span class="toc-section-number">1.4.5</span> Distribution to Linux (universal)</a></li>
-<li><a href="#in-comparison-comparison-to-distribution-with-android-windows-and-macos"><span class="toc-section-number">1.4.6</span> In Comparison: Comparison to Distribution with Android, Windows and macOS</a></li>
-<li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">1.4.7</span> Distribution to Kubernetes/the Cloud</a></li>
-<li><a href="#pipelines"><span class="toc-section-number">1.4.8</span> Pipelines</a></li>
+<li><a href="#distribution-to-redhat-enterprise-linux"><span class="toc-section-number">1.4.3</span> Distribution to RedHat
+Enterprise Linux</a></li>
+<li><a href="#distribution-to-debian-gnulinux"><span class="toc-section-number">1.4.4</span> Distribution to Debian
+GNU/Linux</a></li>
+<li><a href="#distribution-to-linux-universal"><span class="toc-section-number">1.4.5</span> Distribution to Linux
+(universal)</a></li>
+<li><a href="#in-comparison-comparison-to-distribution-with-android-windows-and-macos"><span class="toc-section-number">1.4.6</span> In Comparison: Comparison to
+Distribution with Android, Windows and macOS</a></li>
+<li><a href="#distribution-to-kubernetesthe-cloud"><span class="toc-section-number">1.4.7</span> Distribution to Kubernetes/the
+Cloud</a></li>
+<li><a href="#pipelines"><span class="toc-section-number">1.4.8</span>
+Pipelines</a></li>
 </ul></li>
 </ul>
 </nav>
 <section id="introduction" data-number="0.1">
-<h2 data-number="1.1"><span class="header-section-number">1.1</span> Introduction</h2>
+<h2 data-number="1.1"><span class="header-section-number">1.1</span>
+Introduction</h2>
 <section id="contributing" data-number="0.1.1">
-<h3 data-number="1.1.1"><span class="header-section-number">1.1.1</span> Contributing</h3>
-<p>These study materials are heavily based on <a href="https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212237">professor Heuzeroth’s “Spezielle Themen für Web-Anwendungen” lecture at HdM Stuttgart</a>.</p>
-<p><strong>Found an error or have a suggestion?</strong> Please open an issue on GitHub (<a href="https://github.com/pojntfx/uni-webtopics-notes">github.com/pojntfx/uni-webtopics-notes</a>):</p>
+<h3 data-number="1.1.1"><span class="header-section-number">1.1.1</span>
+Contributing</h3>
+<p>These study materials are heavily based on <a href="https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212237">professor
+Heuzeroth’s “Spezielle Themen für Web-Anwendungen” lecture at HdM
+Stuttgart</a>.</p>
+<p><strong>Found an error or have a suggestion?</strong> Please open an
+issue on GitHub (<a href="https://github.com/pojntfx/uni-webtopics-notes">github.com/pojntfx/uni-webtopics-notes</a>):</p>
 <figure>
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADB0lEQVR4nO2czW3jMBCF3ywF5EgBKWBLoTpwSalpOxBLcQEByKMBCm8P/BHt5JJ1Vnak4cGAZX4wCY8eH4cjC/Hl5n99nQEUUkghhRRSSKF9QlLaUK76sV0bFwFi7TA9ZHgKbQ85kmQA4MdFZIoinC0JxBcCMCRJXkPbDU+h7aFYBEDezi/kbEmZosjasVOQnzInhb4JWgTuPACOCXABkOk/fZNCTwgNHy+ZBH+6CL0Ywo8QIj5qeAptDtWIsATyD28TxIUFAgDiCIj7A/SZrCefk0LfAPm8rwCAOCD7SRfaWyx5q/Go4Sm0tUb0AmATiLjktYL+dwKvOzz9nBS6B0LeVWY9gCEZDHNYzJa1rZ+S5Pzkc1LoHgg1z1AzDi4gpydKlNgEMgCcYZjzFhoRe4ZQbvv8xpCzTSDzxrNFSQ0Q1Yj9Q92qwdkmoCwdKHnMGSYryNpZI+IAUAmGdYdhEzjHAYC9CGd7ESDHyyOGp9ADVg1LwjFlu1Cs5CfX1EfsHmqrhmExDgEALKujCIYlIph01TgAVPMRcanrgiXgpyGJOw8Q2IsQWATNTDz9nBS6B6q7T3sjFCUpsdqKuoioRuwcajnLZcj5ST+afJBRmk0DEQfQT0O1lk8+J4XugaqPaKnJnHtgE4VguJ6Lq4/YP9RlqFYrmeMAQEtK1Karxu6h3kcAqPV1q1DANMnQvcYRoBYR5WgLWHeawdxuQVUj9g+h04MuXQk0R1HjhUF9xBGgzll2ptKtGgGgvqhGHAGqVXXxNRFxBAFD+PEd8KcEuDC2+rpFa6gOAIHXDdlK1nx2PgJz7AsnVCN2DWWNqDe/SfSndykV2DBJYAEgvubkFLcenkKbQ9cZqlILkY1DkQwUjWidVSMOAcX2UGctmwHao35eJJ+DlS4/ZE4KfQuU7UJYRCZLyttZpOav9OzzCNCHZ7q8mAQ/mQQ/vg9ENAmIAvqT+ogjQLc+Yq3J7yr2W7Gl+oj9Q72BbGcY3UMbpaQq1XMwjYi9Q6L/TKaQQgoppJBCCv0j9Bdy9rE3fYGmKgAAAABJRU5ErkJggg==" width="150" alt="QR code to source repository" /><figcaption aria-hidden="true">QR code to source repository</figcaption>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADB0lEQVR4nO2czW3jMBCF3ywF5EgBKWBLoTpwSalpOxBLcQEByKMBCm8P/BHt5JJ1Vnak4cGAZX4wCY8eH4cjC/Hl5n99nQEUUkghhRRSSKF9QlLaUK76sV0bFwFi7TA9ZHgKbQ85kmQA4MdFZIoinC0JxBcCMCRJXkPbDU+h7aFYBEDezi/kbEmZosjasVOQnzInhb4JWgTuPACOCXABkOk/fZNCTwgNHy+ZBH+6CL0Ywo8QIj5qeAptDtWIsATyD28TxIUFAgDiCIj7A/SZrCefk0LfAPm8rwCAOCD7SRfaWyx5q/Go4Sm0tUb0AmATiLjktYL+dwKvOzz9nBS6B0LeVWY9gCEZDHNYzJa1rZ+S5Pzkc1LoHgg1z1AzDi4gpydKlNgEMgCcYZjzFhoRe4ZQbvv8xpCzTSDzxrNFSQ0Q1Yj9Q92qwdkmoCwdKHnMGSYryNpZI+IAUAmGdYdhEzjHAYC9CGd7ESDHyyOGp9ADVg1LwjFlu1Cs5CfX1EfsHmqrhmExDgEALKujCIYlIph01TgAVPMRcanrgiXgpyGJOw8Q2IsQWATNTDz9nBS6B6q7T3sjFCUpsdqKuoioRuwcajnLZcj5ST+afJBRmk0DEQfQT0O1lk8+J4XugaqPaKnJnHtgE4VguJ6Lq4/YP9RlqFYrmeMAQEtK1Karxu6h3kcAqPV1q1DANMnQvcYRoBYR5WgLWHeawdxuQVUj9g+h04MuXQk0R1HjhUF9xBGgzll2ptKtGgGgvqhGHAGqVXXxNRFxBAFD+PEd8KcEuDC2+rpFa6gOAIHXDdlK1nx2PgJz7AsnVCN2DWWNqDe/SfSndykV2DBJYAEgvubkFLcenkKbQ9cZqlILkY1DkQwUjWidVSMOAcX2UGctmwHao35eJJ+DlS4/ZE4KfQuU7UJYRCZLyttZpOav9OzzCNCHZ7q8mAQ/mQQ/vg9ENAmIAvqT+ogjQLc+Yq3J7yr2W7Gl+oj9Q72BbGcY3UMbpaQq1XMwjYi9Q6L/TKaQQgoppJBCCv0j9Bdy9rE3fYGmKgAAAABJRU5ErkJggg==" width="150" alt="QR code to source repository" />
+<figcaption aria-hidden="true">QR code to source repository</figcaption>
 </figure>
-<p>If you like the study materials, a GitHub star is always appreciated :)</p>
+<p>If you like the study materials, a GitHub star is always appreciated
+:)</p>
 </section>
 <section id="license" data-number="0.1.2">
-<h3 data-number="1.1.2"><span class="header-section-number">1.1.2</span> License</h3>
+<h3 data-number="1.1.2"><span class="header-section-number">1.1.2</span>
+License</h3>
 <figure>
-<img src="data:image/png;base64,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" width="128" alt="AGPL-3.0 license badge" /><figcaption aria-hidden="true">AGPL-3.0 license badge</figcaption>
+<img src="data:image/png;base64,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" width="128" alt="AGPL-3.0 license badge" />
+<figcaption aria-hidden="true">AGPL-3.0 license badge</figcaption>
 </figure>
-<p>Uni Web Topics Presentation (c) 2021 Felicitas Pojtinger and contributors</p>
+<p>Uni Web Topics Presentation (c) 2021 Felicitas Pojtinger and
+contributors</p>
 <p>SPDX-License-Identifier: AGPL-3.0 </p>
 </section>
 </section>
 <section id="overview" data-number="0.2">
-<h2 data-number="1.2"><span class="header-section-number">1.2</span> Overview</h2>
+<h2 data-number="1.2"><span class="header-section-number">1.2</span>
+Overview</h2>
 <ul>
 <li>What is DevOps?</li>
 <li>Which parts of the software lifecycle does it cover?
@@ -209,45 +239,72 @@
 <li>Distribution (I will focus on this today)</li>
 <li>Operation</li>
 </ul></li>
-<li>What is “cloud native?”</li>
+<li>What is “cloud native”?</li>
 <li>Why are “traditional” distribution methods still relevant?</li>
 </ul>
 </section>
 <section id="development" data-number="0.3">
-<h2 data-number="1.3"><span class="header-section-number">1.3</span> Development</h2>
+<h2 data-number="1.3"><span class="header-section-number">1.3</span>
+Development</h2>
 <ul>
 <li><p>DevOps also includes development!</p></li>
-<li><p>Modern development should not be bound to any client attributes (it should not matter if the client is a RISC-V Linux machine, a locked-down Windows workstation or an Android phone)</p></li>
-<li><p>Development should be possible from any platform, for any platform</p></li>
-<li><p>The only truly cross-platform application framework is the web</p></li>
-<li><p>PWAs make it possible for web apps to have all the features native apps have</p></li>
+<li><p>Modern development should not be bound to any client attributes
+(it should not matter if the client is a RISC-V Linux machine, a
+locked-down Windows workstation or an Android phone)</p></li>
+<li><p>Development should be possible from any platform, for any
+platform</p></li>
+<li><p>The only truly cross-platform application framework is the
+web</p></li>
+<li><p>PWAs make it possible for web apps to have all the features
+native apps have</p></li>
 <li><p>PWAs work offline by default</p></li>
 <li><p>Why not make our development environments PWAs?</p></li>
-<li><p>Virtual machines and user-friendly hypervisors and containers make it possible to run the editor’s backend locally too</p></li>
-<li><p>Source code can for example never leave the company’s system</p></li>
-<li><p>Development environments can be quickly updated and tightened to prevent supply chain attacks and increase reproducibility</p></li>
-<li><p>Imagine: You find a Free Software project, and all you have to do in order to contribute is press “.”</p></li>
+<li><p>Virtual machines and user-friendly hypervisors and containers
+make it possible to run the editor’s backend locally too</p></li>
+<li><p>Source code can for example never leave the company’s
+system</p></li>
+<li><p>Development environments can be quickly updated and tightened to
+prevent supply chain attacks and increase reproducibility</p></li>
+<li><p>Imagine: You find a Free Software project, and all you have to do
+in order to contribute is press “.”!</p></li>
 <li><p>Onboarding new developers becomes much easier</p></li>
-<li><p>Independence of client choice enables the use of much cheaper or constrained client devices</p></li>
-<li><p>Open standards and web technologies enable the adoption of new client and server hardware (i.e. RISC-V chips) easier and enables the easy use of and testing on multiple architectures</p></li>
-<li><p>Autoscaling, ballooning etc. can be used server-side: There is no need to provision lots of development servers if no one is using them, and if there is a need for a lot of resources (for example if someone is compiling say a C++ project) the provisioner (i.e. Kubernetes) can dynamically decide to scale up the container or VM</p></li>
-<li><p>There is no need to trust a project’s build system, everything can be sandboxed!</p></li>
+<li><p>Independence of client choice enables the use of much cheaper or
+constrained client devices</p></li>
+<li><p>Open standards and web technologies enable the adoption of new
+client and server hardware (i.e. RISC-V chips) easier and enables the
+easy use of and testing on multiple architectures</p></li>
+<li><p>Autoscaling, ballooning etc. can be used server-side: There is no
+need to provision lots of development servers if no one is using them,
+and if there is a need for a lot of resources (for example if someone is
+compiling say a C++ project) the provisioner (i.e. Kubernetes) can
+dynamically decide to scale up the container or VM</p></li>
+<li><p>There is no need to trust a project’s build system, everything
+can be sandboxed!</p></li>
 <li><p>There are already multiple “cloud IDEs”</p></li>
-<li><p>Most are based on VSCode (or, to be more precise, VSCode’s API specification)</p></li>
-<li><p>VSCode (or its libre forks, like VSCodium) is already based on web technologies (Electron), so adapting it to run in the browser is possible</p></li>
-<li><p>Theia is an example of an alternative implementation of VSCode’s API, which serves as a vendor-neutral implementation of VSCode</p></li>
-<li><p>Cloud-Native IDEs can either be self-hosted or public SaaS, so let’s take a look at some of them!</p></li>
+<li><p>Most are based on VSCode (or, to be more precise, VSCode’s API
+specification)</p></li>
+<li><p>VSCode (or its libre forks, like VSCodium) is already based on
+web technologies (Electron), so adapting it to run in the browser is
+possible</p></li>
+<li><p>Theia is an example of an alternative implementation of VSCode’s
+API, which serves as a vendor-neutral implementation of VSCode</p></li>
+<li><p>Cloud-Native IDEs can either be self-hosted or public SaaS, so
+let’s take a look at some of them!</p></li>
 <li><p>GitPod: Live demo</p></li>
 <li><p>Codespaces: Live demo</p></li>
 <li><p>pojde: Live demo</p></li>
-<li><p>But what if we want to develop things that one can’t normally develop remotely?</p></li>
-<li><p>Apps which require Android devices as a target, require a programmer, USB or Bluetooth and are not using Web Bluetooth/Web Serial (i.e. Android apps, smart home projects, IoT devices, Arduinos)</p>
+<li><p>But what if we want to develop things that one can’t normally
+develop remotely?</p></li>
+<li><p>Apps which require Android devices as a target, require a
+programmer, USB or Bluetooth and are not using Web Bluetooth/Web Serial
+(i.e. Android apps, smart home projects, IoT devices, Arduinos)</p>
 <ul>
 <li>Forward USB over IP</li>
 <li>Forward DBus over IP for BlueZ</li>
 <li>Use SSH tunnels</li>
 </ul></li>
-<li><p>Apps which require a Wayland compositor/a screen (i.e. desktop Linux apps, GTK/QT apps)</p>
+<li><p>Apps which require a Wayland compositor/a screen (i.e. desktop
+Linux apps, GTK/QT apps)</p>
 <ul>
 <li>Waypipe</li>
 <li>Use SSH tunnels</li>
@@ -260,58 +317,123 @@
 </ul>
 </section>
 <section id="distribution" data-number="0.4">
-<h2 data-number="1.4"><span class="header-section-number">1.4</span> Distribution</h2>
+<h2 data-number="1.4"><span class="header-section-number">1.4</span>
+Distribution</h2>
 <section id="basic-distribution-principles" data-number="0.4.1">
-<h3 data-number="1.4.1"><span class="header-section-number">1.4.1</span> Basic Distribution Principles</h3>
+<h3 data-number="1.4.1"><span class="header-section-number">1.4.1</span>
+Basic Distribution Principles</h3>
 <ul>
 <li><p>Binaries</p>
 <ul>
 <li>Compiled forms of software</li>
-<li>On Linux: ELF binaries, PE binaries on Windows and MACH-O binaries on macOS</li>
+<li>On Linux: ELF binaries, PE binaries on Windows and MACH-O binaries
+on macOS</li>
 <li>Binaries can be statically or dynamically linked
 <ul>
-<li>Statically linked: Since the Linux ABIs are stable, one can depend on them not changing - this allows not linking against any specific C library and makes the resulting binary portable across distributions. It also allows including all external dependencies into the binary, effectively making it a “single-file” distribution method</li>
-<li>Dynamically linked: Thanks to <code>dlopen</code> and package management, dynamic linking can also be used. Most of the time (especially on non-Linux OSes), at least the C library and external dependencies (i.e. <code>SQLite</code>) thus need to be available in <code>LD_LIBRARY_PATH</code> at runtime; if they are not, the application can’t continue. This makes the binaries non-portable across distributions; for example, if a binary is built on a Debian 11 host, it most probably won’t run on a Debian 10 host due to the different versions of the GNU C library used. This does however also have a few big advantages, which apply especially to Linux distributions.</li>
-<li>Demo: Create a statically-linked (<code>CGO_ENABLE=1</code>) Go binary, running <code>ldd</code> on it and running it in two containers (Debian and Alpine Linux), then retrying it with a statically-linked (<code>CGO_ENABLE=0</code>) binary</li>
+<li>Statically linked: Since the Linux ABIs are stable, one can depend
+on them not changing - this allows not linking against any specific C
+library and makes the resulting binary portable across distributions. It
+also allows including all external dependencies into the binary,
+effectively making it a “single-file” distribution method</li>
+<li>Dynamically linked: Thanks to <code>dlopen</code> and package
+management, dynamic linking can also be used. Most of the time
+(especially on non-Linux OSes), at least the C library and external
+dependencies (i.e. <code>SQLite</code>) thus need to be available in
+<code>LD_LIBRARY_PATH</code> at runtime; if they are not, the
+application can’t continue. This makes the binaries non-portable across
+distributions; for example, if a binary is built on a Debian 11 host, it
+most probably won’t run on a Debian 10 host due to the different
+versions of the GNU C library used. This does however also have a few
+big advantages, which apply especially to Linux distributions.</li>
+<li>Demo: Create a statically-linked (<code>CGO_ENABLE=1</code>) Go
+binary, running <code>ldd</code> on it and running it in two containers
+(Debian and Alpine Linux), then retrying it with a statically-linked
+(<code>CGO_ENABLE=0</code>) binary</li>
 </ul></li>
 </ul></li>
 <li><p>GPG signing</p>
 <ul>
-<li>GPG: GNU privacy guard; a Free Software implementing GPG (RFC 4880)</li>
-<li>Signatures allow the user to verify the author of a piece of software</li>
-<li>To increase security, only signed software should ever be installed - as we’ll see later, this is already the case on Linux distributions and their repositories</li>
-<li>For example: If author Alice publishes an app (lets call it “scihab”) and user Bob wishes to be able to verify that the binary has actually been produced by Alice, he can verify that the binary has actually been produced by Alice and hasn’t for example been infected with malware by a malicious actor, in which the case the signature (usually a <code>.asc</code> file) no longer matches.</li>
-<li>Demo: Creating a signed binary, verifying it (hydrapp), tampering with it (adding bytes to end), and re-verifying it using keygaen</li>
+<li>GPG: GNU privacy guard; a Free Software implementing GPG (RFC
+<ol start="4880" type="1">
+<li></li>
+</ol></li>
+<li>Signatures allow the user to verify the author of a piece of
+software</li>
+<li>To increase security, only signed software should ever be installed
+- as we’ll see later, this is already the case on Linux distributions
+and their repositories</li>
+<li>For example: If author Alice publishes an app (lets call it
+“scihab”) and user Bob wishes to be able to verify that the binary has
+actually been produced by Alice, he can verify that the binary has
+actually been produced by Alice and hasn’t for example been infected
+with malware by a malicious actor, in which the case the signature
+(usually a <code>.asc</code> file) no longer matches.</li>
+<li>Demo: Creating a signed binary, verifying it (hydrapp), tampering
+with it (adding bytes to end), and re-verifying it using keygaen</li>
 </ul></li>
 <li><p>Portability</p>
 <ul>
 <li><p>Applications should be portable</p></li>
-<li><p>Portability can mean different things: Portability as in amount of platforms it can be compiled for, platforms it can be compiled on, platforms it can run on in compiled form, constraints the compiled form needs</p></li>
-<li><p>There are many reasons to make apps portable, both from a developer’s and a user’s point of view</p></li>
-<li><p>Apps can be tuned for portability with a few simple steps (see in part https://drewdevault.com/2021/09/27/Let-distros-do-their-job.html)</p>
+<li><p>Portability can mean different things: Portability as in amount
+of platforms it can be compiled for, platforms it can be compiled on,
+platforms it can run on in compiled form, constraints the compiled form
+needs</p></li>
+<li><p>There are many reasons to make apps portable, both from a
+developer’s and a user’s point of view</p></li>
+<li><p>Apps can be tuned for portability with a few simple steps (see in
+part
+https://drewdevault.com/2021/09/27/Let-distros-do-their-job.html)</p>
 <ul>
 <li>Distribution as a simple tarball</li>
 <li>Shipping static binaries</li>
-<li>Use standard build systems and methodologies (Go, Cargo, Meson, Autotools, CMake etc.), <em>never</em> use custom bash scripts to build your software; this will ensure that packaging the software is much easier, as the tooling for the build system probably already exists. It also vastly increases the developer experience (DX).</li>
-<li>Inclusion of good release notes makes it much easier from a distro’s or developer’s perspective to be aware of changes that might break the build system or new runtime or target platform requirements</li>
-<li>Use dependencies carefully (i.e. use them to reduce maintenance overhead and security issues by having external tests on say usecases like IP or Email parsing); too many external dependencies and especially dependencies without a secure external supply chain lead to security issues in the app itself, which make it harder to build and decrease portability (i.e. cryptography libraries often require hardware-accelerated CPU support, which is unavailable in low-end CPUs)</li>
+<li>Use standard build systems and methodologies (Go, Cargo, Meson,
+Autotools, CMake etc.), <em>never</em> use custom bash scripts to build
+your software; this will ensure that packaging the software is much
+easier, as the tooling for the build system probably already exists. It
+also vastly increases the developer experience (DX).</li>
+<li>Inclusion of good release notes makes it much easier from a distro’s
+or developer’s perspective to be aware of changes that might break the
+build system or new runtime or target platform requirements</li>
+<li>Use dependencies carefully (i.e. use them to reduce maintenance
+overhead and security issues by having external tests on say usecases
+like IP or Email parsing); too many external dependencies and especially
+dependencies without a secure external supply chain lead to security
+issues in the app itself, which make it harder to build and decrease
+portability (i.e. cryptography libraries often require
+hardware-accelerated CPU support, which is unavailable in low-end
+CPUs)</li>
 </ul></li>
-<li><p>Portability is however often overlooked; product owners mostly see no value in it, unless things break. It is up to the developer to take initiative</p></li>
-<li><p>Demo: Compiling the Links browser from source with Autotools</p></li>
+<li><p>Portability is however often overlooked; product owners mostly
+see no value in it, unless things break. It is up to the developer to
+take initiative</p></li>
+<li><p>Demo: Compiling the Links browser from source with
+Autotools</p></li>
 </ul></li>
 <li><p>Reproducibility</p>
 <ul>
-<li>Compiling the same source code should always reproduce the same binary, byte-for-byte</li>
-<li>This allows the user and external developers to reproduce the binary</li>
-<li>It ensures that the binary has actually been built using the source code in question</li>
-<li>Without reproducibility, the only way to establish that the binary is “trusted” is trusting the developer who GPG signed the binary - they could have, for example, been paid to include telemetry or other malware, in which case the compiled binary would not match the output expected by the source code.</li>
-<li>Reproducibility in combination with the points above also allow checking if changing the source code actually lead to different results</li>
-<li>Demo: Compiling a Go binary multiple times leads to a binary with the same SHA256 hash</li>
+<li>Compiling the same source code should always reproduce the same
+binary, byte-for-byte</li>
+<li>This allows the user and external developers to reproduce the
+binary</li>
+<li>It ensures that the binary has actually been built using the source
+code in question</li>
+<li>Without reproducibility, the only way to establish that the binary
+is “trusted” is trusting the developer who GPG signed the binary - they
+could have, for example, been paid to include telemetry or other
+malware, in which case the compiled binary would not match the output
+expected by the source code.</li>
+<li>Reproducibility in combination with the points above also allow
+checking if changing the source code actually lead to different
+results</li>
+<li>Demo: Compiling a Go binary multiple times leads to a binary with
+the same SHA256 hash</li>
 </ul></li>
 <li><p>Why we need more than “just binaries”</p>
 <ul>
-<li>Binaries themselves can be very portable, but are not the best solution</li>
-<li>Binaries can’t (without self-extraction) include assets other than the programs logic
+<li>Binaries themselves can be very portable, but are not the best
+solution</li>
+<li>Binaries can’t (without self-extraction) include assets other than
+the programs logic
 <ul>
 <li>Data files (i.e. databases)</li>
 <li>Runtime-exchangable internationalization/translations</li>
@@ -331,78 +453,121 @@
 </ul>
 </section>
 <section id="packaging-overview" data-number="0.4.2">
-<h3 data-number="1.4.2"><span class="header-section-number">1.4.2</span> Packaging Overview</h3>
+<h3 data-number="1.4.2"><span class="header-section-number">1.4.2</span>
+Packaging Overview</h3>
 <ul>
 <li><p>What is a package?</p>
 <ul>
 <li>Includes the binary, assets, metadata and signature</li>
 <li>Is self-describing</li>
-<li>Mostly some form of archive (i.e. RPM, <code>.tar.gz</code>) in combination with a metadata file and signature</li>
+<li>Mostly some form of archive (i.e. RPM, <code>.tar.gz</code>) in
+combination with a metadata file and signature</li>
 </ul></li>
 <li><p>What is a package manager?</p>
 <ul>
 <li>Can install, remove and update packages</li>
-<li>Mostly two components: Low-level tool to install and remove package files (<code>dpkg</code> on Debian, <code>rpm</code> on Fedora) and a high-level tool to search, download, install and resolve dependencies (<code>apt</code> on Debian, <code>dnf</code> on Fedora)</li>
-<li>Can resolve and install runtime and build-time dependencies (i.e. dependency on C library, SQLite, SDL2, headers for cURL etc.)</li>
+<li>Mostly two components: Low-level tool to install and remove package
+files (<code>dpkg</code> on Debian, <code>rpm</code> on Fedora) and a
+high-level tool to search, download, install and resolve dependencies
+(<code>apt</code> on Debian, <code>dnf</code> on Fedora)</li>
+<li>Can resolve and install runtime and build-time dependencies
+(i.e. dependency on C library, SQLite, SDL2, headers for cURL etc.)</li>
 <li>Can check GPG signatures of</li>
 </ul></li>
 <li><p>Repository</p>
 <ul>
 <li>Can serve packages and their metadata (i.e. versions)</li>
-<li>Large repository mostly provided by a distribution (“a distribution is the repositories”), with the ability to enable official community repos (i.e. Alpine Linux) and backports (Debian)</li>
-<li>Custom repositories can also be installed and be included in individual packages, so that installing the package also installs the repository for further updates</li>
+<li>Large repository mostly provided by a distribution (“a distribution
+is the repositories”), with the ability to enable official community
+repos (i.e. Alpine Linux) and backports (Debian)</li>
+<li>Custom repositories can also be installed and be included in
+individual packages, so that installing the package also installs the
+repository for further updates</li>
 </ul></li>
 <li><p>Source packages and tarballs</p>
 <ul>
 <li>Builds should be reproducible</li>
-<li>Source packages contain all information necessary to build the application (including source code, build-time dependencies, patches, metadata for package creation)</li>
-<li>Tarballs: <code>tar</code>-files, tape archives: A linear storage format used internally for physical tapes but also for files. Contains all source code; often zipped (<code>.tar.gz</code>)</li>
-<li>Depending on the package format the source package can contain the source code (RedHat) or use a separate tarball (Debian)</li>
-<li>There can be additional tarballs, i.e. one with the original source and one with the distro’s patches (i.e. <code>.debian.tar.gz</code>)</li>
-<li>Many systems allow installing from the binary package (see following) and by downloading &amp; rebuilding the source package</li>
+<li>Source packages contain all information necessary to build the
+application (including source code, build-time dependencies, patches,
+metadata for package creation)</li>
+<li>Tarballs: <code>tar</code>-files, tape archives: A linear storage
+format used internally for physical tapes but also for files. Contains
+all source code; often zipped (<code>.tar.gz</code>)</li>
+<li>Depending on the package format the source package can contain the
+source code (RedHat) or use a separate tarball (Debian)</li>
+<li>There can be additional tarballs, i.e. one with the original source
+and one with the distro’s patches
+(i.e. <code>.debian.tar.gz</code>)</li>
+<li>Many systems allow installing from the binary package (see
+following) and by downloading &amp; rebuilding the source package</li>
 </ul></li>
 <li><p>Binary packages</p>
 <ul>
-<li>Contains the compiled program, data files and metadata (i.e. dependencies on other binary packages)</li>
+<li>Contains the compiled program, data files and metadata
+(i.e. dependencies on other binary packages)</li>
 <li>Is usually what is being used to install the software</li>
 </ul></li>
 <li><p>Documentation packages</p>
 <ul>
-<li>Are often separate packages as documentation may not be required for running the software and documentation can be large</li>
+<li>Are often separate packages as documentation may not be required for
+running the software and documentation can be large</li>
 <li>Can have different license from rest of software, i.e. GFDL</li>
-<li>Often ends in docs; i.e. in Alpine Linux, for the binary package <code>mariadb</code> the documentation package is called <code>mariadb-docs</code></li>
+<li>Often ends in docs; i.e. in Alpine Linux, for the binary package
+<code>mariadb</code> the documentation package is called
+<code>mariadb-docs</code></li>
 </ul></li>
 <li><p>Dependencies</p>
 <ul>
-<li>There are two basic types of dependencies: Build-time and runtime</li>
-<li>Build-time dependencies are required to compile the software; i.e. compilers or dependencies vendored by the distro (i.e. LaTeX packages, headers)</li>
-<li>Runtime dependencies are required to run the software; i.e. dynamically-linked libraries (i.e. OpenSSL) or other programs that can be launched</li>
-<li>Dynamic linking is useful in distros as it allows the distro to update all important dependencies (i.e. the SSL library) at once as long as the ABI didn’t change</li>
-<li>Versions and alternatives can be specified; i.e. Go and <code>gccgo</code> as one of the Go compilers to choose from or OpenSSL and LibreSSL as one of the SSL libraries to choose from</li>
+<li>There are two basic types of dependencies: Build-time and
+runtime</li>
+<li>Build-time dependencies are required to compile the software;
+i.e. compilers or dependencies vendored by the distro (i.e. LaTeX
+packages, headers)</li>
+<li>Runtime dependencies are required to run the software;
+i.e. dynamically-linked libraries (i.e. OpenSSL) or other programs that
+can be launched</li>
+<li>Dynamic linking is useful in distros as it allows the distro to
+update all important dependencies (i.e. the SSL library) at once as long
+as the ABI didn’t change</li>
+<li>Versions and alternatives can be specified; i.e. Go and
+<code>gccgo</code> as one of the Go compilers to choose from or OpenSSL
+and LibreSSL as one of the SSL libraries to choose from</li>
 </ul></li>
 <li><p>Metadata</p>
 <ul>
-<li>Packages often have metadata: ID, Name, description, author, license, version, URL, changelog etc.</li>
-<li>AppStream metadata (and to a certain degree, <code>.desktop</code> files) is a standard for this data</li>
-<li><code>.desktop</code> files provide shortcuts, application categories and window menu options (mostly of use in a desktop context, but can also be used as an alternative to launching binaries directly)</li>
+<li>Packages often have metadata: ID, Name, description, author,
+license, version, URL, changelog etc.</li>
+<li>AppStream metadata (and to a certain degree, <code>.desktop</code>
+files) is a standard for this data</li>
+<li><code>.desktop</code> files provide shortcuts, application
+categories and window menu options (mostly of use in a desktop context,
+but can also be used as an alternative to launching binaries
+directly)</li>
 </ul></li>
 <li><p>systemd and systemd Units</p>
 <ul>
 <li>Are the basic buildings blocks of a Linux system</li>
 <li>Describe a service/daemon</li>
-<li>Can be either system services (managed by root or an authorized user) or user services (managed by a user)</li>
-<li>Can describe dependencies on other services; i.e. dependency of backend on database</li>
+<li>Can be either system services (managed by root or an authorized
+user) or user services (managed by a user)</li>
+<li>Can describe dependencies on other services; i.e. dependency of
+backend on database</li>
 <li>Can launch services in parallel if dependencies allow for it</li>
-<li>Supports socket activation: Services will only be started if a user makes a request and is stopped afterwards (“scale to zero”)</li>
-<li>Can be enabled, started, stopped etc. based on user input or targets (i.e. after system is turned on, gets an internet connection, has started the shutdown process)</li>
+<li>Supports socket activation: Services will only be started if a user
+makes a request and is stopped afterwards (“scale to zero”)</li>
+<li>Can be enabled, started, stopped etc. based on user input or targets
+(i.e. after system is turned on, gets an internet connection, has
+started the shutdown process)</li>
 </ul></li>
 <li><p>Demo: Downloading, updating, extracting a package</p></li>
 </ul>
 </section>
 <section id="distribution-to-redhat-enterprise-linux" data-number="0.4.3">
-<h3 data-number="1.4.3"><span class="header-section-number">1.4.3</span> Distribution to RedHat Enterprise Linux</h3>
+<h3 data-number="1.4.3"><span class="header-section-number">1.4.3</span>
+Distribution to RedHat Enterprise Linux</h3>
 <ul>
-<li>RHEL is a very popular distribution and serves as the upstream of many other distros (CentOS, Rocky Linux etc.)</li>
+<li>RHEL is a very popular distribution and serves as the upstream of
+many other distros (CentOS, Rocky Linux etc.)</li>
 <li>Fedora Linux is its upstream</li>
 <li>Is based on the RPM package format and the DNF package manager</li>
 <li>Commercial</li>
@@ -412,9 +577,11 @@
 </ul>
 </section>
 <section id="distribution-to-debian-gnulinux" data-number="0.4.4">
-<h3 data-number="1.4.4"><span class="header-section-number">1.4.4</span> Distribution to Debian GNU/Linux</h3>
+<h3 data-number="1.4.4"><span class="header-section-number">1.4.4</span>
+Distribution to Debian GNU/Linux</h3>
 <ul>
-<li>Debian is another very popular distribution that also serves as the upstream of many other distros (Ubuntu, Linux Mint, Pop!_OS etc.)</li>
+<li>Debian is another very popular distribution that also serves as the
+upstream of many other distros (Ubuntu, Linux Mint, Pop!_OS etc.)</li>
 <li>Is based on the DEB package format and the APT package manager</li>
 <li>Community-Driven, completely Free Software</li>
 <li>5 years support per major release</li>
@@ -423,65 +590,89 @@
 </ul>
 </section>
 <section id="distribution-to-linux-universal" data-number="0.4.5">
-<h3 data-number="1.4.5"><span class="header-section-number">1.4.5</span> Distribution to Linux (universal)</h3>
+<h3 data-number="1.4.5"><span class="header-section-number">1.4.5</span>
+Distribution to Linux (universal)</h3>
 <ul>
-<li>Flatpak is a universal package format for Linux (“apps for Linux”)</li>
+<li>Flatpak is a universal package format for Linux (“apps for
+Linux”)</li>
 <li>Sandboxed</li>
-<li>Standalone/runtime-based (does not depend on OS-provided libraries)</li>
-<li>Runs on all Linux distributions, even older major releases: Allows the user to install modern software on stable systems like Debian</li>
+<li>Standalone/runtime-based (does not depend on OS-provided
+libraries)</li>
+<li>Runs on all Linux distributions, even older major releases: Allows
+the user to install modern software on stable systems like Debian</li>
 <li>Permission system: Camera, File Access, Terminals</li>
-<li>Portals: Allow interaction with host system (i.e. screen sharing, file access etc.)</li>
+<li>Portals: Allow interaction with host system (i.e. screen sharing,
+file access etc.)</li>
 <li>Includes a universal repository system</li>
 <li>Demo: Setting up Flatpak and installing “Video Downloader”</li>
-<li>No concept of source packages; a single YAML/JSON manifest (reverse FQDN) is the source package and serves as the build system too</li>
+<li>No concept of source packages; a single YAML/JSON manifest (reverse
+FQDN) is the source package and serves as the build system too</li>
 <li>Tight integration with GNOME Builder</li>
 <li>Demo: Creating and building a Flatpak with GNOME</li>
-<li>Why is Flatpak relevant in a web context?: Similar to Docker, which I will show later</li>
+<li>Why is Flatpak relevant in a web context?: Similar to Docker, which
+I will show later</li>
 </ul>
 </section>
 <section id="in-comparison-comparison-to-distribution-with-android-windows-and-macos" data-number="0.4.6">
-<h3 data-number="1.4.6"><span class="header-section-number">1.4.6</span> In Comparison: Comparison to Distribution with Android, Windows and macOS</h3>
+<h3 data-number="1.4.6"><span class="header-section-number">1.4.6</span>
+In Comparison: Comparison to Distribution with Android, Windows and
+macOS</h3>
 <ul>
-<li>As we are in a web context I will only take a short look at proprietary platform’s distribution mechanism</li>
-<li>The intention here is to show why these platforms are not viable for secure usage</li>
+<li>As we are in a web context I will only take a short look at
+proprietary platform’s distribution mechanism</li>
+<li>The intention here is to show why these platforms are not viable for
+secure usage</li>
 <li>Android
 <ul>
-<li>APKs can be published to a “app store” which is comparable to a repository, i.e. F-Droid, Huawei AppGallery, Samsung Galaxy, Amazon App Store or Google Play.</li>
-<li>APKs are ZIP files with a Manifest, Dalvik Bytecode, Resources and native libraries</li>
+<li>APKs can be published to a “app store” which is comparable to a
+repository, i.e. F-Droid, Huawei AppGallery, Samsung Galaxy, Amazon App
+Store or Google Play.</li>
+<li>APKs are ZIP files with a Manifest, Dalvik Bytecode, Resources and
+native libraries</li>
 <li>Updates are handled by the app store</li>
 <li>Permissions are handled by the operating system</li>
 </ul></li>
 <li>Windows
 <ul>
 <li>MSI packages or self-extracting installers are used</li>
-<li>No concept of source or binary packages, no reproducibility - most software is fully proprietary and violates the user’s rights</li>
-<li>Files are tracked through the registry, but arbitrary code can be run at install time</li>
+<li>No concept of source or binary packages, no reproducibility - most
+software is fully proprietary and violates the user’s rights</li>
+<li>Files are tracked through the registry, but arbitrary code can be
+run at install time</li>
 <li>Has an app store without apps</li>
-<li>Almost all apps implement their own update systems which replaces the app itself with the update</li>
+<li>Almost all apps implement their own update systems which replaces
+the app itself with the update</li>
 </ul></li>
 <li>macOS
 <ul>
 <li>DMG images or <code>.pkg</code> installers are used</li>
-<li>No concept of source or binary packages, no reproducibility - most software is fully proprietary and violates the user’s rights</li>
-<li>Files are not tracked, but in the case or a DMG image are extracted</li>
+<li>No concept of source or binary packages, no reproducibility - most
+software is fully proprietary and violates the user’s rights</li>
+<li>Files are not tracked, but in the case or a DMG image are
+extracted</li>
 <li>Sandboxing is possible, but not widely used</li>
-<li>Has a heavily restricted app store which costs $100 per year and a $2000 computer to send apps to</li>
-<li>Most apps implement their own update systems which replaces the app itself with the update</li>
+<li>Has a heavily restricted app store which costs $100 per year and a
+$2000 computer to send apps to</li>
+<li>Most apps implement their own update systems which replaces the app
+itself with the update</li>
 </ul></li>
 </ul>
 </section>
 <section id="distribution-to-kubernetesthe-cloud" data-number="0.4.7">
-<h3 data-number="1.4.7"><span class="header-section-number">1.4.7</span> Distribution to Kubernetes/the Cloud</h3>
+<h3 data-number="1.4.7"><span class="header-section-number">1.4.7</span>
+Distribution to Kubernetes/the Cloud</h3>
 <ul>
 <li><p>Native</p>
 <ul>
 <li><code>scp</code> to server</li>
 <li>Configure systemd Unit</li>
-<li>Get status and logs using <code>systemctl</code> and <code>journalctl</code></li>
+<li>Get status and logs using <code>systemctl</code> and
+<code>journalctl</code></li>
 </ul></li>
 <li><p>Docker</p>
 <ul>
-<li>Like VMs, but the host kernel is shared (isolation taking place by using CGroups)</li>
+<li>Like VMs, but the host kernel is shared (isolation taking place by
+using CGroups)</li>
 <li>“Apps for servers”</li>
 <li>Workflow
 <ul>
@@ -495,20 +686,26 @@
 </ul></li>
 <li><p>Kubernetes</p>
 <ul>
-<li>A declarative orchestration system for containerized applications</li>
+<li>A declarative orchestration system for containerized
+applications</li>
 <li>Objects
 <ul>
 <li>Pods: One or multiple containers running an app</li>
 <li>Deployments: Configuration of how pods will be created</li>
-<li>Service: Makes an app (i.e. a gRPC API server) reachable from other pods within the cluster</li>
+<li>Service: Makes an app (i.e. a gRPC API server) reachable from other
+pods within the cluster</li>
 <li>Ingress: Makes a service reachable from the outside</li>
-<li>Autoscaler: Allows vertical or horizontally scaling a deployment</li>
+<li>Autoscaler: Allows vertical or horizontally scaling a
+deployment</li>
 </ul></li>
 <li>Internal Components
 <ul>
-<li>CRI: Container runtime interface, manages containers (historically Docker)</li>
-<li>CNI: Container network interface, manages networking between containers (i.e. Flannel)</li>
-<li>CSI: Container storage interface, manages volumes and attaches them to containers (i.e. OpenEBS)</li>
+<li>CRI: Container runtime interface, manages containers (historically
+Docker)</li>
+<li>CNI: Container network interface, manages networking between
+containers (i.e. Flannel)</li>
+<li>CSI: Container storage interface, manages volumes and attaches them
+to containers (i.e. OpenEBS)</li>
 </ul></li>
 <li>Scheduler: Efficiently scales the pods across the cluster</li>
 <li>Workflow
@@ -519,7 +716,8 @@
 <li>Deploy objects to the cluster using <code>kubectl apply</code></li>
 <li>Get objects using <code>kubectl get</code></li>
 <li>Delete objects using <code>kubectl delete</code></li>
-<li>TUIs and GUIs like <code>k9s</code> and Lens can make management easier</li>
+<li>TUIs and GUIs like <code>k9s</code> and Lens can make management
+easier</li>
 </ul></li>
 </ul></li>
 <li><p>Helm</p>
@@ -538,12 +736,15 @@
 <li><code>helm install repo/chart</code></li>
 <li>Take inventory using <code>helm list</code></li>
 <li>Delete using <code>helm delete</code></li>
-<li>TUIs and GUIs like <code>k9s</code> (which also supports Helm) and Kubeapps can make management easier</li>
+<li>TUIs and GUIs like <code>k9s</code> (which also supports Helm) and
+Kubeapps can make management easier</li>
 </ul></li>
 </ul></li>
 <li><p>Skaffold</p>
 <ul>
-<li>“Skaffold handles the workflow for building, pushing and deploying your application, allowing you to focus on what matters most: writing code.”</li>
+<li>“Skaffold handles the workflow for building, pushing and deploying
+your application, allowing you to focus on what matters most: writing
+code.”</li>
 <li>Workflow
 <ul>
 <li>Invoke <code>skaffold</code> (dev or production)</li>
@@ -570,52 +771,95 @@
 </ul>
 </section>
 <section id="pipelines" data-number="0.4.8">
-<h3 data-number="1.4.8"><span class="header-section-number">1.4.8</span> Pipelines</h3>
+<h3 data-number="1.4.8"><span class="header-section-number">1.4.8</span>
+Pipelines</h3>
 <ul>
 <li>bagop &amp; bagccgop
 <ul>
 <li>Tools to build for a lot of platforms</li>
-<li>Examples in Go, but these kind of tools exist for almost all programming languages</li>
-<li>Cloud environments and Kubernetes clusters are heterogeneous: They can have many different CPU architectures (x86_64, arm64, riscv64, ppc64 etc.)</li>
-<li>Portability is the key factor; your apps should not assume their target platforms and use standard build systems, which makes this much easier</li>
-<li>bagop and bagccgop try to build for all possible targets (i.e. Linux on riscv64, FreeBSD on x86_64 etc.) by default and then allows you to disable platforms which one can’t compile for</li>
-<li>bagop works for pure Go, is fast and builds for ~40 targets by default</li>
+<li>Examples in Go, but these kind of tools exist for almost all
+programming languages</li>
+<li>Cloud environments and Kubernetes clusters are heterogeneous: They
+can have many different CPU architectures (x86_64, arm64, riscv64, ppc64
+etc.)</li>
+<li>Portability is the key factor; your apps should not assume their
+target platforms and use standard build systems, which makes this much
+easier</li>
+<li>bagop and bagccgop try to build for all possible targets (i.e. Linux
+on riscv64, FreeBSD on x86_64 etc.) by default and then allows you to
+disable platforms which one can’t compile for</li>
+<li>bagop works for pure Go, is fast and builds for ~40 targets by
+default</li>
 <li>Demo: Build a Hello World Go app with bagop</li>
-<li>C libraries further complicate the situation: These require dynamically linked libraries and headers at compile/runtime, which means that they also require related dependencies at compile time for the specific target architecture and operating system, even if static linking is used</li>
-<li>The solution is to either use tweaked <code>chroot</code>s and a cross-compiler (fast but tricky to set up) or <code>binfmt</code> and <code>qemu-user-static</code> (slow but easy to set up)</li>
+<li>C libraries further complicate the situation: These require
+dynamically linked libraries and headers at compile/runtime, which means
+that they also require related dependencies at compile time for the
+specific target architecture and operating system, even if static
+linking is used</li>
+<li>The solution is to either use tweaked <code>chroot</code>s and a
+cross-compiler (fast but tricky to set up) or <code>binfmt</code> and
+<code>qemu-user-static</code> (slow but easy to set up)</li>
 <li>bagccgop is an automated way to use the first solution</li>
-<li>Can build for all Debian-supported platforms (including “esoteric” ones like 32-bit PowerPC)</li>
+<li>Can build for all Debian-supported platforms (including “esoteric”
+ones like 32-bit PowerPC)</li>
 <li>Can build static binaries with CGo thanks to GCCGo</li>
-<li>Allows the use of pretty much any C library with “cross-compilation by default” (OpenSSL, SDL2, Vulkan etc.)</li>
-<li>Demo: Build a Hello World CGo app (calls <code>printf</code>) with bagccgop and run it on the PowerBook</li>
-<li>Using a tool like this makes sure that your app is actually portable and notifies you if dependencies are introduced which break portability</li>
+<li>Allows the use of pretty much any C library with “cross-compilation
+by default” (OpenSSL, SDL2, Vulkan etc.)</li>
+<li>Demo: Build a Hello World CGo app (calls <code>printf</code>) with
+bagccgop and run it on the PowerBook</li>
+<li>Using a tool like this makes sure that your app is actually portable
+and notifies you if dependencies are introduced which break
+portability</li>
 </ul></li>
 <li>Hydrun
 <ul>
-<li>Tool to run a command in the current directory on another processor architecture or operating system</li>
-<li>Is very useful for both building software and testing software (the “runtime equivalent” of tools like bagop and bagccgop)</li>
-<li>Enables reproducibility of the build system and decreases reliance on available (public) build environments like the VMs available on GitHub actions</li>
-<li>Can be used to run your build locally and prevent issues which would otherwise only be “testable” by pushing to i.e. the Git repository connected to the CI system</li>
+<li>Tool to run a command in the current directory on another processor
+architecture or operating system</li>
+<li>Is very useful for both building software and testing software (the
+“runtime equivalent” of tools like bagop and bagccgop)</li>
+<li>Enables reproducibility of the build system and decreases reliance
+on available (public) build environments like the VMs available on
+GitHub actions</li>
+<li>Can be used to run your build locally and prevent issues which would
+otherwise only be “testable” by pushing to i.e. the Git repository
+connected to the CI system</li>
 <li>Can be used to test built binaries</li>
-<li>Demo: Build a static binary on Debian GNU/Linux through hydrun, bagop and bagccgop and then test if the binary is actually static by running it in Alpine Linux using it</li>
+<li>Demo: Build a static binary on Debian GNU/Linux through hydrun,
+bagop and bagccgop and then test if the binary is actually static by
+running it in Alpine Linux using it</li>
 </ul></li>
 <li>GitHub Actions
 <ul>
-<li>Allows you to run commands on remote, ad-hoc machines in response to triggers (i.e. a commit has been pushed to a Git repository or a schedule)</li>
+<li>Allows you to run commands on remote, ad-hoc machines in response to
+triggers (i.e. a commit has been pushed to a Git repository or a
+schedule)</li>
 <li>Can be used to build, test and publish software projects</li>
-<li>Is fairly generic and can be extended to use custom actions written in i.e. JavaScript</li>
+<li>Is fairly generic and can be extended to use custom actions written
+in i.e. JavaScript</li>
 <li>Is configured using YAML</li>
 <li>Can use GitHub’s hosted machines or self-hosted nodes</li>
-<li><strong>on</strong>: Describes the triggers for the build system</li>
-<li><strong>jobs</strong>: Describes the commands to run and actions to execute for a build configuration</li>
-<li><strong>strategy</strong>: Describes a matrix of build configurations that can be executed in parallel (i.e. different binaries for the project, different build commands)</li>
-<li>Pre-written actions can be very useful as a low-maintenance way to add complex functionality:
+<li><strong>on</strong>: Describes the triggers for the build
+system</li>
+<li><strong>jobs</strong>: Describes the commands to run and actions to
+execute for a build configuration</li>
+<li><strong>strategy</strong>: Describes a matrix of build
+configurations that can be executed in parallel (i.e. different binaries
+for the project, different build commands)</li>
+<li>Pre-written actions can be very useful as a low-maintenance way to
+add complex functionality:
 <ul>
-<li><code>actions/checkout</code>: <code>git clone</code>s the source code of the branch on which the event has been triggered</li>
-<li><code>docker/setup-qemu-action</code>: Installs QEMU, which allows the pipeline to run binaries for different target architectures</li>
-<li><code>docker/setup-buildx-action</code>: Installs <code>buildx</code>, the next-generation build command for Docker with better support for multiple architectures</li>
-<li><code>actions/upload-artifact</code> and <code>actions/download-artifact</code>: Upload/download an artifact to the current run’s cache (i.e. to exchange it between jobs)</li>
-<li><code>marvinpinto/action-automatic-releases</code>: Create as a GitHub releases and uploads assets; see the next section</li>
+<li><code>actions/checkout</code>: <code>git clone</code>s the source
+code of the branch on which the event has been triggered</li>
+<li><code>docker/setup-qemu-action</code>: Installs QEMU, which allows
+the pipeline to run binaries for different target architectures</li>
+<li><code>docker/setup-buildx-action</code>: Installs
+<code>buildx</code>, the next-generation build command for Docker with
+better support for multiple architectures</li>
+<li><code>actions/upload-artifact</code> and
+<code>actions/download-artifact</code>: Upload/download an artifact to
+the current run’s cache (i.e. to exchange it between jobs)</li>
+<li><code>marvinpinto/action-automatic-releases</code>: Create as a
+GitHub releases and uploads assets; see the next section</li>
 </ul></li>
 </ul></li>
 <li>Semantic Versioning and Semantic Release
@@ -628,12 +872,16 @@
 <li>MINOR: Increment if backwards-compatible features were added</li>
 <li>PATCH: Increment if backwards-compatible bug fixes were added</li>
 </ul></li>
-<li>Is not only useful to those writing &amp; releasing software, but also those consuming it (i.e. distributions like Debian or projects which depend on external libraries)</li>
+<li>Is not only useful to those writing &amp; releasing software, but
+also those consuming it (i.e. distributions like Debian or projects
+which depend on external libraries)</li>
 <li>Semantic Release is a tool to make using it easier
 <ul>
 <li>1: <code>git tag</code> (i.e. <code>git tag v0.1.0</code>)</li>
 <li>2: Push</li>
-<li>Semantic Release will create a GitHub release, corresponding changelog and upload/publish release assets (i.e. source code or binaries)</li>
+<li>Semantic Release will create a GitHub release, corresponding
+changelog and upload/publish release assets (i.e. source code or
+binaries)</li>
 <li>Demo: Release example software using GitHub Actions it</li>
 </ul></li>
 </ul></li>
